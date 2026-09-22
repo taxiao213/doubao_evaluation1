@@ -1,0 +1,5 @@
+{
+  "orders": [
+    {"order_id": "SO-2001", "customer_code": "北方科技", "lines": [{"sku": "SKU-E", "qty": 4, "unit_price": "12.35", "tax_rate": "0.005"}]}
+  ]
+}

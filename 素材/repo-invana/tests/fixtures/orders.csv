@@ -1,0 +1,5 @@
+order_id,customer_code,sku,qty,unit_price,tax_rate
+SO-1001,华东贸易,SKU-A,1,55.00,0.005
+SO-1001,华东贸易,SKU-B,1,33.10,0.005
+SO-1002,南方制造,SKU-C,2,120.00,0.005
+SO-1003,华东贸易,SKU-D,3,48.60,0.005

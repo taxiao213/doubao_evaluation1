@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>设计稿1：SaaS 产品落地页</title>
+<style>
+  @page { size: 1440px 1800px; margin: 0; }
+  * { box-sizing: border-box; margin: 0; }
+  body { width: 1440px; font-family: "PingFang SC", sans-serif; color: #16233b; background: #f7f5f0; }
+  header { display: flex; justify-content: space-between; align-items: center; padding: 22px 72px; }
+  .logo { font-size: 21px; font-weight: 700; letter-spacing: 1px; }
+  .logo em { color: #d96c2f; font-style: normal; }
+  nav a { margin-left: 34px; font-size: 15px; color: #3d4a60; text-decoration: none; }
+  .cta { background: #16233b; color: #fff; padding: 10px 26px; border-radius: 999px; font-size: 14px; }
+  .hero { padding: 70px 72px 40px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; }
+  .hero h1 { font-size: 56px; line-height: 1.18; font-weight: 800; }
+  .hero h1 span { color: #d96c2f; }
+  .hero p.sub { margin: 22px 0 30px; font-size: 18px; color: #4d5a70; line-height: 1.7; }
+  .btns { display: flex; gap: 16px; }
+  .btn-primary { background: #d96c2f; color: #fff; padding: 14px 34px; border-radius: 8px; font-size: 16px; font-weight: 600; }
+  .btn-ghost { border: 1.5px solid #16233b; padding: 14px 34px; border-radius: 8px; font-size: 16px; }
+  .hero-card { background: #fff; border-radius: 16px; box-shadow: 0 24px 60px rgba(22,35,59,.14); padding: 28px; }
+  .hero-card .row { display: flex; justify-content: space-between; padding: 14px 6px; border-bottom: 1px dashed #e3ddd2; font-size: 15px; }
+  .hero-card .row b { font-size: 18px; }
+  .metrics { display: flex; gap: 0; margin: 30px 72px 0; background: #16233b; border-radius: 14px; color: #fff; }
+  .metric { flex: 1; padding: 30px 24px; border-right: 1px solid rgba(255,255,255,.12); }
+  .metric:last-child { border-right: none; }
+  .metric b { display: block; font-size: 34px; color: #f0b57c; }
+  .metric span { font-size: 14px; opacity: .75; }
+  .features { padding: 64px 72px; }
+  .features h2 { font-size: 32px; margin-bottom: 36px; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .card { background: #fff; border-radius: 12px; padding: 28px; border: 1px solid #e8e2d6; }
+  .card:nth-child(2) { transform: translateY(18px); }
+  .card .icon { width: 42px; height: 42px; border-radius: 10px; background: #f4e3d3; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 16px; }
+  .card h3 { font-size: 18px; margin-bottom: 10px; }
+  .card p { font-size: 14px; color: #5a6577; line-height: 1.7; }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">云衡<em>·</em>FlowMetric</div>
+  <nav><a>产品</a><a>解决方案</a><a>定价</a><a>文档</a><span class="cta">免费试用</span></nav>
+</header>
+<section class="hero">
+  <div>
+    <h1>让每一笔业务数据<br>都有<span>迹可循</span></h1>
+    <p class="sub">FlowMetric 为中大型团队提供实时数据流水线与业务归因分析，5 分钟接入，无需自建数仓。</p>
+    <div class="btns"><span class="btn-primary">开始 14 天试用</span><span class="btn-ghost">预约演示</span></div>
+  </div>
+  <div class="hero-card">
+    <div class="row"><span>今日事件量</span><b>2,418,902</b></div>
+    <div class="row"><span>活跃流水线</span><b>37 条</b></div>
+    <div class="row"><span>平均延迟</span><b>1.8s</b></div>
+    <div class="row" style="border:none"><span>异常告警</span><b style="color:#c0392b">3 条待处理</b></div>
+  </div>
+</section>
+<section class="metrics">
+  <div class="metric"><b>99.99%</b><span>服务可用性</span></div>
+  <div class="metric"><b>1,200+</b><span>付费团队</span></div>
+  <div class="metric"><b>PB 级</b><span>日处理数据</span></div>
+  <div class="metric"><b>5 分钟</b><span>平均接入时间</span></div>
+</section>
+<section class="features">
+  <h2>为什么选择 FlowMetric</h2>
+  <div class="grid">
+    <div class="card"><div class="icon">⚡</div><h3>实时归因</h3><p>指标波动自动下钻到渠道、地域、版本维度，定位根因从小时级缩短到分钟级。</p></div>
+    <div class="card"><div class="icon">🔌</div><h3>广域接入</h3><p>内置 120+ 数据源连接器，覆盖主流数据库、SaaS 与埋点 SDK。</p></div>
+    <div class="card"><div class="icon">🛡️</div><h3>权限与合规</h3><p>字段级权限控制与审计日志，满足金融与出海场景的合规要求。</p></div>
+  </div>
+</section>
+</body>
+</html>

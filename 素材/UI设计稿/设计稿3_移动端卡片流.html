@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>设计稿3：移动端卡片流（390px）</title>
+<style>
+  @page { size: 390px 1200px; margin: 0; }
+  * { box-sizing: border-box; margin: 0; }
+  body { width: 390px; font-family: "PingFang SC", sans-serif; background: #f6f6f4; color: #1c1c1e; padding-bottom: 90px; }
+  .statusbar { display: flex; justify-content: space-between; padding: 12px 22px 6px; font-size: 13px; font-weight: 600; }
+  .search { margin: 10px 16px; background: #ececea; border-radius: 10px; padding: 10px 14px; font-size: 14px; color: #8e8e93; }
+  .chips { display: flex; gap: 8px; padding: 4px 16px 12px; overflow: hidden; }
+  .chip { font-size: 13px; padding: 7px 15px; border-radius: 999px; background: #fff; border: 1px solid #e4e4e0; white-space: nowrap; }
+  .chip.on { background: #1c1c1e; color: #fff; border-color: #1c1c1e; }
+  .card { margin: 0 16px 14px; background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,.05); }
+  .cover { height: 150px; display: flex; align-items: center; justify-content: center; font-size: 42px; }
+  .c1 { background: linear-gradient(135deg,#ffe0c2,#ffb37c); }
+  .c2 { background: linear-gradient(135deg,#cfe4ff,#8fbcf5); }
+  .c3 { background: linear-gradient(135deg,#d8f3dc,#95d5a4); }
+  .body { padding: 14px 16px 16px; }
+  .title { font-size: 16px; font-weight: 700; line-height: 1.4; }
+  .desc { font-size: 13px; color: #7c7c82; margin-top: 6px; line-height: 1.6; }
+  .meta { display: flex; justify-content: space-between; margin-top: 12px; align-items: center; }
+  .author { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: #55555a; }
+  .avatar { width: 22px; height: 22px; border-radius: 50%; }
+  .a1 { background: #e8a87c; } .a2 { background: #7ca6e8; } .a3 { background: #7ce8a5; }
+  .likes { font-size: 12.5px; color: #8e8e93; }
+  .tabbar { position: fixed; bottom: 0; width: 390px; background: rgba(255,255,255,.96); display: flex; justify-content: space-around; padding: 10px 0 26px; font-size: 11px; color: #9a9aa0; border-top: 1px solid #ececea; }
+  .tabbar .on { color: #1c1c1e; font-weight: 600; }
+  .fab { position: fixed; right: 18px; bottom: 96px; width: 52px; height: 52px; border-radius: 50%; background: #ff5c38; color: #fff; font-size: 26px; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 18px rgba(255,92,56,.4); }
+</style>
+</head>
+<body>
+<div class="statusbar"><span>9:41</span><span>●●● ⚡</span></div>
+<div class="search">🔍 搜索感兴趣的内容</div>
+<div class="chips"><span class="chip on">推荐</span><span class="chip">露营</span><span class="chip">咖啡</span><span class="chip">数码</span><span class="chip">徒步</span></div>
+
+<div class="card">
+  <div class="cover c1">⛺</div>
+  <div class="body">
+    <div class="title">周末两天一夜，杭州周边 6 个免费露营地实测</div>
+    <div class="desc">全部自带装备，人均花费不到 80 元，附路线和避坑指南。</div>
+    <div class="meta"><div class="author"><div class="avatar a1"></div>山野笔记</div><div class="likes">♡ 2,341</div></div>
+  </div>
+</div>
+<div class="card">
+  <div class="cover c2">☕</div>
+  <div class="body">
+    <div class="title">手冲入门：一支闻起来像果汁的埃塞豆</div>
+    <div class="desc">水温 92 度，粉水比 1:15，三段式注水，风味拆解全记录。</div>
+    <div class="meta"><div class="author"><div class="avatar a2"></div>咖啡因日常</div><div class="likes">♡ 987</div></div>
+  </div>
+</div>
+<div class="card">
+  <div class="cover c3">🚴</div>
+  <div class="body">
+    <div class="title">城市骑行路线｜沿江 22km 无红绿灯攻略</div>
+    <div class="desc">清晨出发看日出，终点补给站推荐，全程骑行道实测。</div>
+    <div class="meta"><div class="author"><div class="avatar a3"></div>轮上生活</div><div class="likes">♡ 1,562</div></div>
+  </div>
+</div>
+
+<div class="fab">＋</div>
+<div class="tabbar"><span class="on">首页</span><span>发现</span><span>发布</span><span>消息</span><span>我的</span></div>
+</body>
+</html>
