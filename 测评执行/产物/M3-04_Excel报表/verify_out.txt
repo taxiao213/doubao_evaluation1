@@ -1,0 +1,108 @@
+{
+  "status": "skipped_no_libreoffice",
+  "formula_execution_verified": false,
+  "warning": "LibreOffice 未安装，公式未重算，仅扫描已有错误值",
+  "total_errors": 0,
+  "error_summary": {},
+  "hardcode": {
+    "status": "clean",
+    "total_suspects": 0,
+    "high_confidence": 0,
+    "sheets_scanned": 2,
+    "details": [],
+    "static_source_sheets": [],
+    "unknown_static_source_sheets": []
+  },
+  "static_risks": {
+    "status": "clean",
+    "compat": {
+      "count": 0,
+      "details": []
+    },
+    "shape": {
+      "count": 0,
+      "details": []
+    },
+    "coverage": {
+      "formula_cells": 20,
+      "static_numeric_cells": 18,
+      "formula_share": 0.5263
+    }
+  },
+  "invariants": {
+    "status": "clean",
+    "categories": {
+      "arithmetic": {
+        "supported": 0,
+        "matched": 0,
+        "mismatched": 0,
+        "skipped": 20,
+        "samples": []
+      },
+      "tieout": {
+        "supported": 0,
+        "matched": 0,
+        "mismatched": 0,
+        "skipped": 2,
+        "samples": []
+      },
+      "sensitivity": {
+        "supported": 0,
+        "matched": 0,
+        "mismatched": 0,
+        "skipped": 2,
+        "samples": []
+      }
+    },
+    "supported": 0,
+    "mismatched": 0
+  },
+  "checkpoints": {
+    "status": "inconclusive",
+    "total": 6,
+    "passed": 4,
+    "failed": 0,
+    "skipped": 2,
+    "details": [
+      {
+        "result": "pass",
+        "ref": "财务分析报表!D8",
+        "message": "值符合期望（618）"
+      },
+      {
+        "result": "skip",
+        "ref": "财务分析报表!B14",
+        "message": "公式格还没有计算值（先完成重算，或导入在线表后用在线自检判）"
+      },
+      {
+        "result": "skip",
+        "ref": "财务分析报表!B15",
+        "message": "公式格还没有计算值（先完成重算，或导入在线表后用在线自检判）"
+      },
+      {
+        "result": "pass",
+        "ref": "财务分析报表!B10:E12",
+        "message": "该区域由公式驱动"
+      },
+      {
+        "result": "pass",
+        "ref": "财务分析报表!E4:E12",
+        "message": "该区域由公式驱动"
+      },
+      {
+        "result": "pass",
+        "ref": "子表集合",
+        "message": "2 张子表都在"
+      }
+    ]
+  }
+}
+[recalc] 公式未完成重算（status=skipped_no_libreoffice）：LibreOffice 未安装，公式未重算，仅扫描已有错误值
+只读诊断（错误值扫描、前缀与形状、硬编码嫌疑）已经跑过，缺的只是执行验证。
+退出码 4 不是让你反复重跑，也不是让你换 Python 复算冒充验证：
+交付说明写明「公式未重算」并提示在 Excel 中刷新（Ctrl+Alt+F9），不得写「公式已验证无错误」。
+[checkpoints] 2 条判不了（未通过，也未失败）：
+  - 财务分析报表!B14：公式格还没有计算值（先完成重算，或导入在线表后用在线自检判）
+  - 财务分析报表!B15：公式格还没有计算值（先完成重算，或导入在线表后用在线自检判）
+判不了不等于通过：先完成重算或导入在线表回读，再重跑本命令把它们判掉。
+在此之前不得声称检查点全过。

@@ -1,0 +1,106 @@
+{
+  "schema_version": "2.0",
+  "tool": "xml_lint",
+  "file": "readback_v5_final.xml",
+  "slide_size": {
+    "width": 960,
+    "height": 540
+  },
+  "summary": {
+    "slide_count": 9,
+    "error_count": 0,
+    "warning_count": 0,
+    "info_count": 0,
+    "status": "passed",
+    "release_ready": true,
+    "screenshot_review_required": false
+  },
+  "document": {
+    "errors": [],
+    "warnings": [],
+    "infos": []
+  },
+  "slides": [
+    {
+      "slide_number": 1,
+      "status": "passed",
+      "element_count": 8,
+      "errors": [],
+      "warnings": [],
+      "infos": [],
+      "issues": []
+    },
+    {
+      "slide_number": 2,
+      "status": "passed",
+      "element_count": 25,
+      "errors": [],
+      "warnings": [],
+      "infos": [],
+      "issues": []
+    },
+    {
+      "slide_number": 3,
+      "status": "passed",
+      "element_count": 21,
+      "errors": [],
+      "warnings": [],
+      "infos": [],
+      "issues": []
+    },
+    {
+      "slide_number": 4,
+      "status": "passed",
+      "element_count": 38,
+      "errors": [],
+      "warnings": [],
+      "infos": [],
+      "issues": []
+    },
+    {
+      "slide_number": 5,
+      "status": "passed",
+      "element_count": 8,
+      "errors": [],
+      "warnings": [],
+      "infos": [],
+      "issues": []
+    },
+    {
+      "slide_number": 6,
+      "status": "passed",
+      "element_count": 8,
+      "errors": [],
+      "warnings": [],
+      "infos": [],
+      "issues": []
+    },
+    {
+      "slide_number": 7,
+      "status": "passed",
+      "element_count": 23,
+      "errors": [],
+      "warnings": [],
+      "infos": [],
+      "issues": []
+    },
+    {
+      "slide_number": 8,
+      "status": "passed",
+      "element_count": 19,
+      "errors": [],
+      "warnings": [],
+      "infos": [],
+      "issues": []
+    },
+    {
+      "slide_number": 9,
+      "status": "passed",
+      "element_count": 20,
+      "errors": [],
+      "warnings": [],
+      "infos": [],
+      "issues": []
+    }
+  ]
+}

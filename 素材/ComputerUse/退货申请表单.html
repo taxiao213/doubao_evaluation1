@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>云衡商城 · 商家后台 - 退货申请</title>
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  body { font-family: "PingFang SC", sans-serif; background: #eef1f6; color: #1e2a3a; padding: 32px 0 80px; }
+  .wrap { width: 720px; margin: 0 auto; }
+  .topbar { background: #171e2e; color: #fff; border-radius: 10px 10px 0 0; padding: 16px 28px; display: flex; justify-content: space-between; align-items: center; }
+  .topbar .crumb { font-size: 13px; color: #aab3c5; }
+  .panel { background: #fff; border-radius: 0 0 10px 10px; padding: 30px 34px; box-shadow: 0 2px 12px rgba(20,30,50,.08); }
+  h1 { font-size: 20px; margin-bottom: 6px; }
+  .hint { font-size: 13px; color: #7a8699; margin-bottom: 26px; line-height: 1.6; }
+  .field { margin-bottom: 20px; }
+  label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 7px; }
+  label .req { color: #c0392b; }
+  input[type=text], input[type=tel], input[type=number], select, textarea {
+    width: 100%; padding: 10px 12px; border: 1px solid #ccd4e0; border-radius: 7px; font-size: 14px; background: #fff;
+  }
+  input:focus, select:focus, textarea:focus { outline: 2px solid #4f8ef7; outline-offset: -1px; border-color: #4f8ef7; }
+  .err-msg { display: none; color: #c0392b; font-size: 12.5px; margin-top: 5px; }
+  .err-msg.show { display: block; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  /* 动态展开的质量问题区块 */
+  #qualityBlock { display: none; border-left: 3px solid #e0a83c; background: #fdf9f0; padding: 16px 18px; border-radius: 0 8px 8px 0; margin-bottom: 20px; }
+  #qualityBlock.show { display: block; }
+  .radio-row { display: flex; gap: 24px; font-size: 14px; margin-top: 8px; }
+  .radio-row label { font-weight: 400; margin: 0; }
+  .actions { display: flex; gap: 14px; margin-top: 28px; }
+  .btn { padding: 12px 34px; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; border: none; }
+  .btn-primary { background: #3f78d8; color: #fff; }
+  .btn-primary:disabled { background: #b8c8e4; cursor: not-allowed; }
+  .btn-ghost { background: #fff; border: 1.5px solid #ccd4e0; color: #4d5a70; }
+  /* 错误弹窗 */
+  .overlay { display: none; position: fixed; inset: 0; background: rgba(15,22,35,.5); z-index: 50; align-items: center; justify-content: center; }
+  .overlay.show { display: flex; }
+  .modal { width: 400px; background: #fff; border-radius: 12px; padding: 26px 28px; text-align: center; }
+  .modal .icon { width: 48px; height: 48px; margin: 0 auto 14px; border-radius: 50%; background: #fdecea; color: #c0392b; font-size: 24px; line-height: 48px; }
+  .modal h3 { font-size: 17px; margin-bottom: 8px; }
+  .modal p { font-size: 13.5px; color: #6a7688; line-height: 1.7; }
+  .modal .code { font-family: Menlo, monospace; background: #f3f5f9; padding: 2px 8px; border-radius: 4px; font-size: 12.5px; }
+  .modal .m-actions { display: flex; gap: 12px; margin-top: 22px; justify-content: center; }
+  /* 成功页 */
+  #successView { display: none; text-align: center; padding: 30px 0 10px; }
+  #successView.show { display: block; }
+  .ok-icon { width: 64px; height: 64px; margin: 0 auto 18px; border-radius: 50%; background: #e3f4ea; color: #178a50; font-size: 32px; line-height: 64px; }
+  .rf-id { font-size: 22px; font-weight: 700; color: #178a50; letter-spacing: 1px; margin: 10px 0 26px; font-family: Menlo, monospace; }
+  .summary { text-align: left; width: 460px; margin: 0 auto; border: 1px solid #e7ebf1; border-radius: 10px; overflow: hidden; font-size: 14px; }
+  .summary div { display: flex; justify-content: space-between; padding: 11px 18px; border-bottom: 1px solid #f0f3f7; }
+  .summary div:last-child { border-bottom: none; }
+  .summary span:first-child { color: #7a8699; }
+  .toast { position: fixed; top: 24px; left: 50%; transform: translateX(-50%); background: #1e2a3a; color: #fff; padding: 10px 22px; border-radius: 8px; font-size: 13.5px; display: none; z-index: 60; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <div><b>云衡商城 · 商家后台</b></div>
+    <div class="crumb">订单管理 / 售后中心 / 新建退货申请</div>
+  </div>
+  <div class="panel">
+
+    <!-- 表单视图 -->
+    <div id="formView">
+      <h1>新建退货申请</h1>
+      <p class="hint">请填写退货信息。带 <span style="color:#c0392b">*</span> 为必填项，提交后 1-3 个工作日内审核。</p>
+
+      <div class="field">
+        <label>订单号 <span class="req">*</span></label>
+        <input type="text" id="orderId" placeholder="格式：SO-xxxxx">
+        <div class="err-msg" id="orderIdErr">订单号格式不正确，应为 SO- 加 5 位数字（如 SO-12345）</div>
+      </div>
+
+      <div class="grid2">
+        <div class="field">
+          <label>联系人 <span class="req">*</span></label>
+          <input type="text" id="contact" placeholder="收件联系人姓名">
+        </div>
+        <div class="field">
+          <label>联系电话 <span class="req">*</span></label>
+          <input type="tel" id="phone" placeholder="11 位手机号">
+        </div>
+      </div>
+
+      <div class="field">
+        <label>退货原因 <span class="req">*</span></label>
+        <select id="reason">
+          <option value="">请选择退货原因</option>
+          <option>七天无理由</option>
+          <option>尺寸不合适</option>
+          <option>颜色与描述不符</option>
+          <option>发货太慢</option>
+          <option>不想要了</option>
+          <option>拍错了</option>
+          <option>与协商不符</option>
+          <option>发票问题</option>
+          <option>赠品缺失</option>
+          <option>包装破损</option>
+          <option>质量问题</option>
+          <option>假冒品牌</option>
+        </select>
+      </div>
+
+      <!-- 选"质量问题"后动态显示 -->
+      <div id="qualityBlock">
+        <div class="field">
+          <label>质量问题描述 <span class="req">*</span></label>
+          <textarea id="qualityDesc" rows="3" placeholder="请描述具体质量问题（不少于 10 个字）"></textarea>
+        </div>
+        <div class="field">
+          <label>是否有照片凭证</label>
+          <div class="radio-row">
+            <label><input type="radio" name="evidence" value="有"> 有，可补充上传</label>
+            <label><input type="radio" name="evidence" value="无"> 无</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div class="field">
+          <label>退货数量 <span class="req">*</span></label>
+          <input type="number" id="qty" min="1" max="99" placeholder="1">
+        </div>
+        <div class="field">
+          <label>退款方式 <span class="req">*</span></label>
+          <select id="refundMethod">
+            <option value="">请选择</option>
+            <option>原路退回</option>
+            <option>支付宝</option>
+            <option>银行转账</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-primary" id="submitBtn">提交申请</button>
+        <button class="btn btn-ghost" id="resetBtn">重置</button>
+      </div>
+    </div>
+
+    <!-- 成功视图 -->
+    <div id="successView">
+      <div class="ok-icon">✓</div>
+      <h1>退货申请提交成功</h1>
+      <div class="rf-id" id="rfId"></div>
+      <div class="summary" id="summaryBox"></div>
+      <p class="hint" style="margin-top:22px;">审核结果将以站内信通知，请留意商家后台消息。</p>
+    </div>
+  </div>
+</div>
+
+<!-- 网络错误弹窗（首次提交必现） -->
+<div class="overlay" id="errOverlay">
+  <div class="modal">
+    <div class="icon">!</div>
+    <h3>提交失败</h3>
+    <p>网络异常，服务器响应超时<br>错误代码：<span class="code">E-1024 GATEWAY_TIMEOUT</span></p>
+    <div class="m-actions">
+      <button class="btn btn-primary" id="retryBtn">重试提交</button>
+      <button class="btn btn-ghost" id="cancelBtn">取消</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============ 事件日志（供评分脚本读取） ============ */
+window.__cuEvents = [];
+function logEvent(type, detail) {
+  var e = { ts: new Date().toISOString(), type: type, detail: detail || null };
+  window.__cuEvents.push(e);
+  try {
+    var arr = JSON.parse(localStorage.getItem("cu_event_log") || "[]");
+    arr.push(e);
+    localStorage.setItem("cu_event_log", JSON.stringify(arr));
+  } catch (err) {}
+}
+window.__cuDump = function () {
+  return {
+    events: window.__cuEvents,
+    submissions: JSON.parse(localStorage.getItem("cu_return_submissions") || "[]"),
+  };
+};
+logEvent("page_loaded");
+
+/* ============ 动态字段：质量问题 ============ */
+document.getElementById("reason").addEventListener("change", function () {
+  var block = document.getElementById("qualityBlock");
+  if (this.value === "质量问题") {
+    block.classList.add("show");
+    logEvent("quality_block_revealed");
+  } else {
+    block.classList.remove("show");
+  }
+});
+
+/* ============ 校验 ============ */
+function setErr(id, bad) {
+  document.getElementById(id).classList.toggle("show", bad);
+}
+function validate() {
+  var ok = true;
+  var oid = document.getElementById("orderId").value.trim();
+  var badOrder = !/^SO-\d{5}$/.test(oid);
+  setErr("orderIdErr", badOrder);
+  if (badOrder) { ok = false; logEvent("validation_error", "orderId:" + oid); }
+  if (!document.getElementById("contact").value.trim()) { ok = false; logEvent("validation_error", "contact"); }
+  if (!/^1\d{10}$/.test(document.getElementById("phone").value.trim())) { ok = false; logEvent("validation_error", "phone"); }
+  var reason = document.getElementById("reason").value;
+  if (!reason) { ok = false; logEvent("validation_error", "reason"); }
+  if (reason === "质量问题" && document.getElementById("qualityDesc").value.trim().length < 10) {
+    ok = false; logEvent("validation_error", "qualityDesc_too_short");
+  }
+  var qty = parseInt(document.getElementById("qty").value, 10);
+  if (!(qty >= 1 && qty <= 99)) { ok = false; logEvent("validation_error", "qty:" + document.getElementById("qty").value); }
+  if (!document.getElementById("refundMethod").value) { ok = false; logEvent("validation_error", "refundMethod"); }
+  return ok;
+}
+
+/* ============ 提交流程：首次必报网络错误，重试才成功 ============ */
+var submitCount = 0;
+document.getElementById("submitBtn").addEventListener("click", function () {
+  if (!validate()) { showToast("请检查标红的必填项"); return; }
+  submitCount++;
+  logEvent("submit_clicked", "count=" + submitCount);
+  var btn = this;
+  btn.disabled = true; btn.textContent = "提交中…";
+  setTimeout(function () {
+    btn.disabled = false; btn.textContent = "提交申请";
+    if (submitCount === 1) {          // 埋点：第一次提交 100% 失败
+      logEvent("network_error_shown", "E-1024");
+      document.getElementById("errOverlay").classList.add("show");
+    } else {
+      succeed();
+    }
+  }, 900);
+});
+
+document.getElementById("retryBtn").addEventListener("click", function () {
+  logEvent("retry_clicked");
+  document.getElementById("errOverlay").classList.remove("show");
+  succeed();
+});
+document.getElementById("cancelBtn").addEventListener("click", function () {
+  logEvent("error_modal_cancelled");
+  document.getElementById("errOverlay").classList.remove("show");
+});
+
+function succeed() {
+  var data = {
+    order_id: document.getElementById("orderId").value.trim(),
+    contact: document.getElementById("contact").value.trim(),
+    phone: document.getElementById("phone").value.trim(),
+    reason: document.getElementById("reason").value,
+    quality_desc: document.getElementById("qualityDesc").value.trim() || null,
+    evidence: (document.querySelector('input[name=evidence]:checked') || {}).value || null,
+    qty: parseInt(document.getElementById("qty").value, 10),
+    refund_method: document.getElementById("refundMethod").value,
+    submitted_at: new Date().toISOString(),
+  };
+  var rf = "RF-" + new Date().getFullYear() + "-" + String(Math.floor(1000 + Math.random() * 9000));
+  try {
+    var arr = JSON.parse(localStorage.getItem("cu_return_submissions") || "[]");
+    arr.push(Object.assign({ rf_id: rf }, data));
+    localStorage.setItem("cu_return_submissions", JSON.stringify(arr));
+  } catch (err) {}
+  logEvent("submit_succeeded", rf);
+
+  document.getElementById("formView").style.display = "none";
+  document.getElementById("successView").classList.add("show");
+  document.getElementById("rfId").textContent = rf;
+  var box = document.getElementById("summaryBox");
+  [["订单号", data.order_id], ["联系人", data.contact], ["联系电话", data.phone],
+   ["退货原因", data.reason + (data.quality_desc ? "（" + data.quality_desc + "）" : "")],
+   ["凭证", data.evidence || "—"], ["退货数量", data.qty], ["退款方式", data.refund_method]]
+  .forEach(function (p) {
+    var d = document.createElement("div");
+    d.innerHTML = "<span>" + p[0] + "</span><b>" + p[1] + "</b>";
+    box.appendChild(d);
+  });
+}
+
+document.getElementById("resetBtn").addEventListener("click", function () { logEvent("form_reset"); location.reload(); });
+
+function showToast(msg) {
+  var t = document.getElementById("toast");
+  t.textContent = msg; t.style.display = "block";
+  setTimeout(function () { t.style.display = "none"; }, 2200);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,202 @@
+{
+  "schema_version": "1.0",
+  "source_file": "readback_v5_final.xml",
+  "mode": "summary",
+  "selection": {
+    "slide_numbers": [],
+    "slide_ids": [],
+    "block_ids": [],
+    "raw_xml": false,
+    "output_slide_count": 9
+  },
+  "presentation": {
+    "root": "presentation",
+    "namespace": "https://www.larkoffice.com/sml/2.0",
+    "presentation_id": "KdygsBjq4lu3d5dZdfVcx6ClnBe",
+    "revision_id": null,
+    "title": "M3-01 invana 项目介绍（技术工程·宝石蓝）",
+    "width": "960",
+    "height": "540",
+    "slide_count": 9,
+    "slide_ids": [
+      "pYY",
+      "pYt",
+      "pYi",
+      "pYV",
+      "pYF",
+      "pYW",
+      "pYc",
+      "pYl",
+      "pYv"
+    ]
+  },
+  "summary": {
+    "blocks": 170,
+    "text_blocks": 118,
+    "images": 0,
+    "shapes": 130,
+    "tables": 2,
+    "charts": 1,
+    "icons": 0,
+    "lines": 37,
+    "undefined": 0,
+    "media_usage": null,
+    "warnings": []
+  },
+  "slides": [
+    {
+      "index": 1,
+      "slide_id": "pYY",
+      "counts": {
+        "blocks": 8,
+        "text_blocks": 6,
+        "images": 0,
+        "shapes": 6,
+        "tables": 0,
+        "charts": 0,
+        "icons": 0,
+        "lines": 2,
+        "undefined": 0
+      },
+      "text_preview": "TECHNICAL REVIEW · 架构介绍 | invana 库存与订单分析 SDK | Python 3.10+ · 零第三方运行时依赖 · 分层架构 | 一条从外部数据接入到财务对账报表的可测试数据流， 金额计算收敛到唯一入口，舍入规则集中在唯一工具函数。 | v0.1 · 架构评审材料 | 2026-09-22",
+      "note_preview": null
+    },
+    {
+      "index": 2,
+      "slide_id": "pYt",
+      "counts": {
+        "blocks": 25,
+        "text_blocks": 19,
+        "images": 0,
+        "shapes": 19,
+        "tables": 0,
+        "charts": 0,
+        "icons": 0,
+        "lines": 6,
+        "undefined": 0
+      },
+      "text_preview": "目录 | CONTENTS | 01 | 背景与定位 | 项目目标、输入输出与运行约束 | 02 | 分层架构 | adapters 到 cli 的单向数据流 | 03 | 核心模块 | models / repo / services / adapters / utils | 04 | 质量与规范 | Decimal 金额规则与 pytest 基线 | 05 | 现状与路线 | 失败用例、根因定位与功能规划 | invana 项目介绍 · 技术评审 | 02 / 10",
+      "note_preview": null
+    },
+    {
+      "index": 3,
+      "slide_id": "pYi",
+      "counts": {
+        "blocks": 21,
+        "text_blocks": 15,
+        "images": 0,
+        "shapes": 14,
+        "tables": 0,
+        "charts": 1,
+        "icons": 0,
+        "lines": 6,
+        "undefined": 0
+      },
+      "text_preview": "01 · 背景与定位 | 订单、定价、库存与对账被收敛为一条可测试的数据流 | 定位 | 库存与订单分析的教学 / 评审项目，运行时无第三方依赖，Python 3.10+ 即可运行 | 输入 | CSV / JSON 订单与客户数据：tests/fixtures/orders.csv、orders.json、customers.csv | 输出 | 行级定价、库存校验结果，以及 services/report 生成的财务对账报表 | 运行 | PYTHONPATH=srcp…",
+      "note_preview": null
+    },
+    {
+      "index": 4,
+      "slide_id": "pYV",
+      "counts": {
+        "blocks": 38,
+        "text_blocks": 21,
+        "images": 0,
+        "shapes": 31,
+        "tables": 0,
+        "charts": 0,
+        "icons": 0,
+        "lines": 7,
+        "undefined": 0
+      },
+      "text_preview": "02 · 分层架构 | 数据单向流经四层：adapters → repo → services → cli | adapters | 外部数据适配 | csv_reader · json_reader · http_client · retry | repo | 数据访问 | base · memory · csv_repo · queries | services | 业务服务 | pricing · orders · report · stock · notificat…",
+      "note_preview": null
+    },
+    {
+      "index": 5,
+      "slide_id": "pYF",
+      "counts": {
+        "blocks": 8,
+        "text_blocks": 6,
+        "images": 0,
+        "shapes": 5,
+        "tables": 1,
+        "charts": 0,
+        "icons": 0,
+        "lines": 2,
+        "undefined": 0
+      },
+      "text_preview": "03 · 核心模块 / models | models 层用四个模型固定订单数据的语义边界 | 模块 职责 关键内容 enums.py 枚举与状态取值域 订单状态、折扣类型等枚举，禁止散落魔法字符串 order.py 订单聚合根 订单头与行项目 line；折扣、税费在行级计算 customer.py 客户实体 客户编号、等级与分组字段，支撑分组查询 item.py 商品实体 SKU、单价、税率，行级金额的输入来源 | 设计含义：订单合计不是单独录入的字段，而是各行金额之和；…",
+      "note_preview": null
+    },
+    {
+      "index": 6,
+      "slide_id": "pYW",
+      "counts": {
+        "blocks": 8,
+        "text_blocks": 6,
+        "images": 0,
+        "shapes": 5,
+        "tables": 1,
+        "charts": 0,
+        "icons": 0,
+        "lines": 2,
+        "undefined": 0
+      },
+      "text_preview": "03 · 核心模块 / repo | repo 层面向接口编程，内存与 CSV 两种实现可互换 | 模块 角色 说明 base.py 仓库抽象接口 定义订单、客户、商品的读写契约，上层只依赖接口 memory.py 内存实现 测试与样例数据的默认实现，无 IO 副作用 csv_repo.py CSV 实现 对接 tests/fixtures 下的 CSV 数据文件 queries.py 查询封装 订单汇总、按客户分组等跨实体查询 | 依赖方向：adapters 负责把 CS…",
+      "note_preview": null
+    },
+    {
+      "index": 7,
+      "slide_id": "pYc",
+      "counts": {
+        "blocks": 23,
+        "text_blocks": 15,
+        "images": 0,
+        "shapes": 19,
+        "tables": 0,
+        "charts": 0,
+        "icons": 0,
+        "lines": 4,
+        "undefined": 0
+      },
+      "text_preview": "03 · 核心模块 / services | 所有金额经 pricing 与 round_money，report 只汇总行级金额 | services.pricing | 行级折扣、税费计算 Decimal 舍入 | 唯一入口 | utils.currency | round_money ROUND_HALF_UP 两位小数 | services.report | 订单合计、对账总额 财务对账依赖其输出 | 金额计算规范（docs/spec.md） | 1. 金额运算一律…",
+      "note_preview": null
+    },
+    {
+      "index": 8,
+      "slide_id": "pYl",
+      "counts": {
+        "blocks": 19,
+        "text_blocks": 16,
+        "images": 0,
+        "shapes": 16,
+        "tables": 0,
+        "charts": 0,
+        "icons": 0,
+        "lines": 3,
+        "undefined": 0
+      },
+      "text_preview": "04 · 质量与现状 | 23 个用例中 21 个通过，2 个对账用例失败且根因指向舍入方向 | 23 | 用例总数 | 21 | 通过 | 2 | 失败（对账） | 失败用例（tests/test_report_totals.py） | test_order_totals_match_finance | SO-1001 实测 88.53 ≠ 期望 88.55；SO-1003 实测 146.52 ≠ 期望 146.53 | test_grand_total_matches_…",
+      "note_preview": null
+    },
+    {
+      "index": 9,
+      "slide_id": "pYv",
+      "counts": {
+        "blocks": 20,
+        "text_blocks": 14,
+        "images": 0,
+        "shapes": 15,
+        "tables": 0,
+        "charts": 0,
+        "icons": 0,
+        "lines": 5,
+        "undefined": 0
+      },
+      "text_preview": "05 · 现状与路线 | 先以一处最小改动修复舍入，再扩展按客户分组导出 | 01 | 修复（当前） | round_money 由 ROUND_DOWN 改为 ROUND_HALF_UP，与 spec.md 对齐 | 02 | 验证 | python3 -m pytest tests/ -q 全绿；23 个用例全部通过，不改动测试 | 03 | 扩展（选做） | services/report 增加按客户分组导出 CSV 的能力 | 验收命令：python3 -m pyt…",
+      "note_preview": null
+    }
+  ],
+  "selected_blocks": []
+}

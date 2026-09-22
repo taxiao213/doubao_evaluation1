@@ -1,0 +1,95 @@
+# Dimension 3: inline run formatting
+source: 修复稿_季度工作总结.docx
+syntax: [P<n> ...] starts a paragraph; each <r i=<n> loc=<path> ...> element is one source Run.
+defaults: font="Times New Roman", size=11pt
+run_location_base: /w:document/w:body/
+text_policy: full text is emitted without truncation.
+omitted: repeated source_path; font, size, and paragraph style equal to defaults; raw XML; empty runs without text or semantic objects.
+notes: paragraph layout belongs to dimension 3; tabs, breaks, and symbols are preserved; script-specific font declarations equal to the default font are normalized.
+
+[P1 section=1 loc="/word/document.xml/w:body/*[1]"]
+<r i=1 loc="w:p[1]/w:r" font_eastAsia="黑体" size=22pt b i=false color="#1F1F1F">信息技术部 2026年第二季度工作总结</r>
+
+[P2 section=1 loc="/word/document.xml/w:body/*[2]"]
+<r i=1 loc="w:p[2]/w:r" font_eastAsia="楷体" size=14pt b=false i=false color="#595959">（汇报人：王磊　二〇二六年七月）</r>
+
+[P3 section=1 loc="/word/document.xml/w:body/*[3]"]
+<r i=1 loc="w:p[3]/w:r" font_eastAsia="黑体" size=16pt b i=false color="#1F1F1F">一、本季度工作完成情况</r>
+
+[P4 section=1 loc="/word/document.xml/w:body/*[4]"]
+<r i=1 loc="w:p[4]/w:r" font_eastAsia="宋体" size=12pt b=false i=false color="#000000">二季度，部门按年度计划推进各项任务，整体进展顺利。在系统运维方面，我们重点保证了核心业务系统的稳定运行，可用率达到99.95%，未发生一起一级故障。</r>
+
+[P5 section=1 loc="/word/document.xml/w:body/*[5]"]
+<r i=1 loc="w:p[5]/w:r" font_eastAsia="宋体" size=12pt b=false i=false color="#000000">在项目建设方面，新上线的客户管理系统（CRM）按计划完成了一期交付，覆盖销售、客服两个部门，用户反馈总体良好，但也存在报表导出缓慢、部分页面加载时间偏长等问题，需要在下个阶段重点优化。</r>
+
+[P6 section=1 loc="/word/document.xml/w:body/*[6]"]
+<r i=1 loc="w:p[6]/w:r" font_eastAsia="黑体" size=14pt b i=false color="#1F1F1F">（一）主要指标完成情况</r>
+
+[P7 section=1 loc="/word/document.xml/w:body/*[7]"]
+<r i=1 loc="w:p[7]/w:r" font_eastAsia="宋体" size=12pt b=false i=false color="#000000">• 系统可用率：99.95%，高于季度目标99.9%；</r>
+
+[P8 section=1 loc="/word/document.xml/w:body/*[8]"]
+<r i=1 loc="w:p[8]/w:r" font_eastAsia="宋体" size=12pt b=false i=false color="#000000">• 需求交付：累计完成需求 87个，其中紧急需求 15个，按期交付率 94%；</r>
+
+[P9 section=1 loc="/word/document.xml/w:body/*[9]"]
+<r i=1 loc="w:p[9]/w:r" font_eastAsia="宋体" size=12pt b=false i=false color="#000000">• 故障处理：共处理工单 236单，平均响应时间 18 分钟，平均解决时间 3.2 小时；</r>
+
+[P10 section=1 loc="/word/document.xml/w:body/*[10]"]
+<r i=1 loc="w:p[10]/w:r" font_eastAsia="宋体" size=12pt b=false i=false color="#000000">• 培训完成：组织内部培训 6场，累计参训 214人次。</r>
+
+[P11 section=1 table=1 row=1 cell=1 loc="/word/document.xml/w:body/*[11]/w:tr[1]/w:tc[1]/*[2]"]
+<r i=2 loc="w:tbl/w:tr[1]/w:tc[1]/w:p/w:r[2]" font_eastAsia="黑体" b i=false color="#FFFFFF">指标</r>
+
+[P12 section=1 table=1 row=1 cell=2 loc="/word/document.xml/w:body/*[11]/w:tr[1]/w:tc[2]/*[2]"]
+<r i=2 loc="w:tbl/w:tr[1]/w:tc[2]/w:p/w:r[2]" font_eastAsia="黑体" b i=false color="#FFFFFF">目标值</r>
+
+[P13 section=1 table=1 row=1 cell=3 loc="/word/document.xml/w:body/*[11]/w:tr[1]/w:tc[3]/*[2]"]
+<r i=2 loc="w:tbl/w:tr[1]/w:tc[3]/w:p/w:r[2]" font_eastAsia="黑体" b i=false color="#FFFFFF">实际值</r>
+
+[P14 section=1 table=1 row=2 cell=1 loc="/word/document.xml/w:body/*[11]/w:tr[2]/w:tc[1]/*[2]"]
+<r i=2 loc="w:tbl/w:tr[2]/w:tc[1]/w:p/w:r[2]" font_eastAsia="宋体" b=false i=false color="#000000">系统可用率</r>
+
+[P15 section=1 table=1 row=2 cell=2 loc="/word/document.xml/w:body/*[11]/w:tr[2]/w:tc[2]/*[2]"]
+<r i=2 loc="w:tbl/w:tr[2]/w:tc[2]/w:p/w:r[2]" font_eastAsia="宋体" b=false i=false color="#000000">99.9%</r>
+
+[P16 section=1 table=1 row=2 cell=3 loc="/word/document.xml/w:body/*[11]/w:tr[2]/w:tc[3]/*[2]"]
+<r i=2 loc="w:tbl/w:tr[2]/w:tc[3]/w:p/w:r[2]" font_eastAsia="宋体" b=false i=false color="#000000">99.95%</r>
+
+[P17 section=1 table=1 row=3 cell=1 loc="/word/document.xml/w:body/*[11]/w:tr[3]/w:tc[1]/*[2]"]
+<r i=2 loc="w:tbl/w:tr[3]/w:tc[1]/w:p/w:r[2]" font_eastAsia="宋体" b=false i=false color="#000000">需求按期交付率</r>
+
+[P18 section=1 table=1 row=3 cell=2 loc="/word/document.xml/w:body/*[11]/w:tr[3]/w:tc[2]/*[2]"]
+<r i=2 loc="w:tbl/w:tr[3]/w:tc[2]/w:p/w:r[2]" font_eastAsia="宋体" b=false i=false color="#000000">95%</r>
+
+[P19 section=1 table=1 row=3 cell=3 loc="/word/document.xml/w:body/*[11]/w:tr[3]/w:tc[3]/*[2]"]
+<r i=2 loc="w:tbl/w:tr[3]/w:tc[3]/w:p/w:r[2]" font_eastAsia="宋体" b=false i=false color="#000000">94%</r>
+
+[P20 section=1 table=1 row=4 cell=1 loc="/word/document.xml/w:body/*[11]/w:tr[4]/w:tc[1]/*[2]"]
+<r i=2 loc="w:tbl/w:tr[4]/w:tc[1]/w:p/w:r[2]" font_eastAsia="宋体" b=false i=false color="#000000">自动化测试覆盖率</r>
+
+[P21 section=1 table=1 row=4 cell=2 loc="/word/document.xml/w:body/*[11]/w:tr[4]/w:tc[2]/*[2]"]
+<r i=2 loc="w:tbl/w:tr[4]/w:tc[2]/w:p/w:r[2]" font_eastAsia="宋体" b=false i=false color="#000000">70%</r>
+
+[P22 section=1 table=1 row=4 cell=3 loc="/word/document.xml/w:body/*[11]/w:tr[4]/w:tc[3]/*[2]"]
+<r i=2 loc="w:tbl/w:tr[4]/w:tc[3]/w:p/w:r[2]" font_eastAsia="宋体" b=false i=false color="#000000">62%</r>
+
+[P24 section=1 loc="/word/document.xml/w:body/*[13]"]
+<r i=1 loc="w:p[12]/w:r" font_eastAsia="黑体" size=16pt b i=false color="#1F1F1F">二、存在的主要问题</r>
+
+[P25 section=1 loc="/word/document.xml/w:body/*[14]"]
+<r i=1 loc="w:p[13]/w:r" font_eastAsia="宋体" size=12pt b=false i=false color="#000000">对照年初目标，仍存在以下不足：一是跨部门协作的沟通成本偏高，部分需求在评审阶段反复变更，影响了开发节奏；二是自动化测试覆盖率不足，目前仅为 62%，回归测试仍较多依赖人工；三是文档管理不够规范，部分系统缺少完整的操作手册和运维手册。</r>
+
+[P26 section=1 loc="/word/document.xml/w:body/*[15]"]
+<r i=1 loc="w:p[14]/w:r" font_eastAsia="黑体" size=16pt b i=false color="#1F1F1F">三、下季度工作安排</r>
+
+[P27 section=1 loc="/word/document.xml/w:body/*[16]"]
+<r i=1 loc="w:p[15]/w:r" font_eastAsia="宋体" size=12pt b=false i=false color="#000000">三季度将重点做好以下工作：第一，持续提升系统稳定性，完善监控告警体系，力争把平均故障恢复时间压缩到 2 小时以内；第二，推进 CRM 二期建设，补齐报表性能短板，提升移动端使用体验；</r>
+
+[P28 section=1 loc="/word/document.xml/w:body/*[17]"]
+<r i=1 loc="w:p[16]/w:r" font_eastAsia="宋体" size=12pt b=false i=false color="#000000">第三，加强自动化测试能力建设，目标把覆盖率从62%提升到75%；第四，规范文档管理，在三季度末完成核心系统操作手册和运维手册的补全工作。各小组要明确责任人，关键节点提前向部门汇报。</r>
+
+[P29 section=1 loc="/word/document.xml/w:body/*[18]"]
+<r i=1 loc="w:p[17]/w:r" font_eastAsia="宋体" size=12pt b=false i=false color="#000000">信息技术部</r>
+
+[P30 section=1 loc="/word/document.xml/w:body/*[19]"]
+<r i=1 loc="w:p[18]/w:r" font_eastAsia="宋体" size=12pt b=false i=false color="#000000">2026年7月10日</r>

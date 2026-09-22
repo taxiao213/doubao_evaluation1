@@ -1,0 +1,102 @@
+# Dimension 2: paragraph layout
+source: 原稿_混乱_季度工作总结.docx
+location_base: /word/document.xml/w:body/
+syntax: [P<n> ...] starts a paragraph; listed defaults apply when omitted; other missing attributes are unset/inherited; null overrides a default with unset/inherited.
+defaults: part="word/document.xml"
+definitions: @v1 spacing={"before":"200","after":"120"}; @v2 spacing={"before":"0","after":"80","line":"360","lineRule":"auto"}; @v3 spacing={"before":"0","after":"40","line":"336","lineRule":"auto"}; @v4 spacing={"before":"0","after":"0"}
+text_policy: full text is emitted without truncation.
+omitted: record_type=paragraph; repeated default values; xpath because it equals location; raw XML.
+normalized: loc is body[/row/cell/block] indexes relative to location_base; @v references definitions; line_spacing duplicates spacing.line; border XML is losslessly compacted by tag and attributes.
+
+[P1 section=1 loc=1 align="center" spacing={"before":"0","after":"120"}]
+信息技术部 2026年第二季度工作总节
+
+[P2 section=1 loc=2 align="center" spacing={"before":"0","after":"360"}]
+（汇报人：王磊　二〇二六年七月）
+
+[P3 section=1 loc=3 spacing=@v1]
+一、本季度工作完成情况
+
+[P4 section=1 loc=4 spacing=@v2]
+　　二季度，部门按年度计划推进各项任务，整体进展顺利。在系统运维方面，我们重点保正了核心业务系统的稳定运行，可用率达到99.95%，未发生一起一级故障。
+
+[P5 section=1 loc=5 spacing={"before":"0","after":"160","line":"276","lineRule":"auto"}]
+在项目建设方面，新上线的客户管理系统（CRM）按计划完成了一期交付，覆盖销售、客服两个部门，用户反馈总体良好，但也存在报表导出错慢、部分页面加载时间偏长等问题，需要在下个阶段重点优化。
+
+[P6 section=1 loc=6 spacing={"before":"80","after":"80"}]
+（一）主要指标完成情况
+
+[P7 section=1 loc=7 spacing=@v3]
+• 系统可用率：99.95%，高于季度目标99.9%；
+
+[P8 section=1 loc=8 spacing=@v3]
+1) 需求交付：累计完成需求 87个，其中紧急需求 15个，按期交付率 94%；
+
+[P9 section=1 loc=9 spacing=@v3]
+1、  故障处理：共处理工单 236 单，平均响应时间 18 分钟，平均解决时间 3.2 小时；
+
+[P10 section=1 loc=10 spacing={"before":"0","after":"160","line":"384","lineRule":"auto"}]
+•培训完成：组织内部培训 6 场，累计参训 214 人次。
+
+[P11 section=1 loc=11 spacing=@v4]
+<empty/>
+
+[P12 section=1 loc=12 spacing=@v1]
+二、存在的主要问题
+
+[P13 section=1 loc=13 spacing={"before":"0","after":"160","line":"360","lineRule":"auto"}]
+　　对照年初目标，仍存在以下不足：一是跨部门协作的沟通成本偏高，部分需求在评审阶段反复变更，影响了开发节奏；二是自动化测试覆盖率不足，目前仅为 62%，回归测试仍较多依赖人工；三是文档管理不够规范，部分系统缺少完正的操作手册和运维手册。
+
+[P14 section=1 table=1 row=1 cell=1 loc=14/1/1/2]
+指标
+
+[P15 section=1 table=1 row=1 cell=2 loc=14/1/2/2]
+目标值
+
+[P16 section=1 table=1 row=1 cell=3 loc=14/1/3/2]
+实际值
+
+[P17 section=1 table=1 row=2 cell=1 loc=14/2/1/2]
+系统可用率
+
+[P18 section=1 table=1 row=2 cell=2 loc=14/2/2/2]
+99.9%
+
+[P19 section=1 table=1 row=2 cell=3 loc=14/2/3/2]
+99.95%
+
+[P20 section=1 table=1 row=3 cell=1 loc=14/3/1/2]
+需求按期交付率
+
+[P21 section=1 table=1 row=3 cell=2 loc=14/3/2/2]
+95%
+
+[P22 section=1 table=1 row=3 cell=3 loc=14/3/3/2]
+94%
+
+[P23 section=1 table=1 row=4 cell=1 loc=14/4/1/2]
+自动化测试覆盖率
+
+[P24 section=1 table=1 row=4 cell=2 loc=14/4/2/2]
+70%
+
+[P25 section=1 table=1 row=4 cell=3 loc=14/4/3/2]
+62%
+
+[P26 section=1 loc=15 spacing=@v4]
+<empty/>
+
+[P27 section=1 loc=16 spacing=@v1]
+三、下季度工作按排
+
+[P28 section=1 loc=17 spacing=@v2]
+　　三季度将重点做好以下工作：第一，持续提升系统稳定性，完善监控告警体系，力争把平均故障恢复时间压缩到 2 小时以内；第二，推进 CRM 二期建设，补齐报表性能短板，提生移动端使用体验；
+
+[P29 section=1 loc=18 spacing={"before":"0","after":"200","line":"312","lineRule":"auto"}]
+第三，加强自动化测试能力建设，目标把覆盖率从62%提生到75%；第四，规范文档管理，在三季度末完成核心系统操作手册和运维手册的补全工作。各小组要明确责任人，关健节点提前向部门汇报。
+
+[P30 section=1 loc=19 align="right" spacing={"before":"0","after":"40"}]
+信息技术部
+
+[P31 section=1 loc=20 align="right" spacing=@v4]
+2026年7月10日

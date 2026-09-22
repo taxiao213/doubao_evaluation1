@@ -1,0 +1,8 @@
+[
+ {"cell":"财务分析报表!D8","expect":618,"tolerance":0.01},
+ {"cell":"财务分析报表!B14","expect":1456,"tolerance":0.01},
+ {"cell":"财务分析报表!B15","expect":13753,"tolerance":0.01},
+ {"range":"财务分析报表!B10:E12","all_formula":true},
+ {"range":"财务分析报表!E4:E12","all_formula":true},
+ {"sheets":["财务分析报表","口径与问答"]}
+]

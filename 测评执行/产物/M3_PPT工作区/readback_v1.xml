@@ -1,0 +1,1340 @@
+<presentation id="KdygsBjq4lu3d5dZdfVcx6ClnBe" xmlns="https://www.larkoffice.com/sml/2.0" width="960" height="540">
+  <title>M3-01 invana 项目介绍（技术工程·宝石蓝）</title>
+  <theme>
+    <textStyles>
+      <headline fontColor="rgba(31, 35, 41, 1)"/>
+      <sub-headline fontColor="rgba(31, 35, 41, 1)"/>
+      <body fontColor="rgba(31, 35, 41, 1)"/>
+      <caption fontColor="rgba(155, 158, 162, 1)" fontSize="14"/>
+    </textStyles>
+  </theme>
+  <slide id="pYY">
+    <style>
+      <fill id="fYY">
+        <fillColor color="rgba(255, 255, 255, 1)"/>
+      </fill>
+    </style>
+    <data>
+      <line id="bbG" startX="60" startY="96" endX="180.00416659433122" endY="96">
+        <border color="rgba(0, 48, 135, 1)" width="3"/>
+      </line>
+      <shape width="600" height="20" topLeftX="60" topLeftY="112" type="text" id="bbe">
+        <content fontSize="11" fontFamily="思源黑体" color="rgba(0, 112, 186, 1)" bold="true" lineSpacing="multiple:1.3" textAlign="left">
+          <p>TECHNICAL REVIEW · 架构介绍</p>
+        </content>
+      </shape>
+      <shape width="840" height="70" topLeftX="60" topLeftY="176" type="text" id="bbd">
+        <content textType="title" fontSize="44" fontFamily="思源黑体" color="rgba(0, 28, 84, 1)" bold="true" lineSpacing="multiple:1" textAlign="left" wrap="false">
+          <p>invana 库存与订单分析 SDK</p>
+        </content>
+      </shape>
+      <shape width="840" height="34" topLeftX="60" topLeftY="262" type="text" id="bbX">
+        <content fontSize="18" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="left">
+          <p>Python 3.10+ · 零第三方运行时依赖 · 分层架构</p>
+        </content>
+      </shape>
+      <line id="bbO" startX="60" startY="330" endX="900.0005952378843" endY="330">
+        <border color="rgba(203, 213, 225, 1)" width="1"/>
+      </line>
+      <shape width="840" height="80" topLeftX="60" topLeftY="352" type="text" id="bbb">
+        <content fontSize="15" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.6" textAlign="left">
+          <p>一条从外部数据接入到财务对账报表的可测试数据流，</p>
+          <p>金额计算收敛到唯一入口，舍入规则集中在唯一工具函数。</p>
+        </content>
+      </shape>
+      <shape width="500" height="20" topLeftX="60" topLeftY="470" type="text" id="bbR">
+        <content fontSize="11" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="left">
+          <p>v0.1 · 架构评审材料</p>
+        </content>
+      </shape>
+      <shape width="200" height="20" topLeftX="700" topLeftY="470" type="text" id="bbu">
+        <content fontSize="11" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="right">
+          <p>2026-09-22</p>
+        </content>
+      </shape>
+    </data>
+    <note id="bbI">
+      <content/>
+    </note>
+  </slide>
+  <slide id="pYt">
+    <style>
+      <fill id="fYt">
+        <fillColor color="rgba(255, 255, 255, 1)"/>
+      </fill>
+    </style>
+    <data>
+      <shape width="840" height="48" topLeftX="60" topLeftY="56" type="text" id="bbh">
+        <content textType="title" fontSize="34" fontFamily="思源黑体" color="rgba(0, 28, 84, 1)" bold="true" lineSpacing="multiple:1.3" textAlign="left">
+          <p>目录</p>
+        </content>
+      </shape>
+      <shape width="200" height="18" topLeftX="60" topLeftY="108" type="text" id="bbm">
+        <content fontSize="11" fontFamily="思源黑体" color="rgba(0, 112, 186, 1)" bold="true" lineSpacing="multiple:1.3" textAlign="left">
+          <p>CONTENTS</p>
+        </content>
+      </shape>
+      <shape width="70" height="40" topLeftX="60" topLeftY="170" type="text" id="bbi">
+        <content fontSize="28" fontFamily="思源黑体" color="rgba(0, 48, 135, 1)" bold="true" lineSpacing="multiple:1" textAlign="left">
+          <p>01</p>
+        </content>
+      </shape>
+      <shape width="340" height="28" topLeftX="138" topLeftY="172" type="text" id="bbH">
+        <content fontSize="20" fontFamily="思源黑体" color="rgba(0, 28, 84, 1)" bold="true" lineSpacing="multiple:1" textAlign="left">
+          <p>背景与定位</p>
+        </content>
+      </shape>
+      <shape width="340" height="18" topLeftX="138" topLeftY="206" type="text" id="bby">
+        <content fontSize="11" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="left">
+          <p>项目目标、输入输出与运行约束</p>
+        </content>
+      </shape>
+      <line id="bbw" startX="138" startY="232" endX="470.00150602068055" endY="232">
+        <border color="rgba(203, 213, 225, 1)" width="1"/>
+      </line>
+      <shape width="70" height="40" topLeftX="60" topLeftY="250" type="text" id="bbL">
+        <content fontSize="28" fontFamily="思源黑体" color="rgba(0, 48, 135, 1)" bold="true" lineSpacing="multiple:1" textAlign="left">
+          <p>02</p>
+        </content>
+      </shape>
+      <shape width="340" height="28" topLeftX="138" topLeftY="252" type="text" id="bbE">
+        <content fontSize="20" fontFamily="思源黑体" color="rgba(0, 28, 84, 1)" bold="true" lineSpacing="multiple:1" textAlign="left">
+          <p>分层架构</p>
+        </content>
+      </shape>
+      <shape width="340" height="18" topLeftX="138" topLeftY="286" type="text" id="bbz">
+        <content fontSize="11" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="left">
+          <p>adapters 到 cli 的单向数据流</p>
+        </content>
+      </shape>
+      <line id="bbZ" startX="138" startY="312" endX="470.00150602068055" endY="312">
+        <border color="rgba(203, 213, 225, 1)" width="1"/>
+      </line>
+      <shape width="70" height="40" topLeftX="60" topLeftY="330" type="text" id="bbx">
+        <content fontSize="28" fontFamily="思源黑体" color="rgba(0, 48, 135, 1)" bold="true" lineSpacing="multiple:1" textAlign="left">
+          <p>03</p>
+        </content>
+      </shape>
+      <shape width="340" height="28" topLeftX="138" topLeftY="332" type="text" id="bbt">
+        <content fontSize="20" fontFamily="思源黑体" color="rgba(0, 28, 84, 1)" bold="true" lineSpacing="multiple:1" textAlign="left">
+          <p>核心模块</p>
+        </content>
+      </shape>
+      <shape width="340" height="18" topLeftX="138" topLeftY="366" type="text" id="bbo">
+        <content fontSize="11" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="left">
+          <p>models / repo / services / adapters / utils</p>
+        </content>
+      </shape>
+      <line id="bbv" startX="138" startY="392" endX="470.00150602068055" endY="392">
+        <border color="rgba(203, 213, 225, 1)" width="1"/>
+      </line>
+      <shape width="70" height="40" topLeftX="490" topLeftY="170" type="text" id="bbq">
+        <content fontSize="28" fontFamily="思源黑体" color="rgba(0, 48, 135, 1)" bold="true" lineSpacing="multiple:1" textAlign="left">
+          <p>04</p>
+        </content>
+      </shape>
+      <shape width="340" height="28" topLeftX="568" topLeftY="172" type="text" id="bbD">
+        <content fontSize="20" fontFamily="思源黑体" color="rgba(0, 28, 84, 1)" bold="true" lineSpacing="multiple:1" textAlign="left">
+          <p>质量与规范</p>
+        </content>
+      </shape>
+      <shape width="340" height="18" topLeftX="568" topLeftY="206" type="text" id="bbQ">
+        <content fontSize="11" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="left">
+          <p>Decimal 金额规则与 pytest 基线</p>
+        </content>
+      </shape>
+      <line id="bbs" startX="568" startY="232" endX="900.0015060206806" endY="232">
+        <border color="rgba(203, 213, 225, 1)" width="1"/>
+      </line>
+      <shape width="70" height="40" topLeftX="490" topLeftY="250" type="text" id="bbT">
+        <content fontSize="28" fontFamily="思源黑体" color="rgba(0, 48, 135, 1)" bold="true" lineSpacing="multiple:1" textAlign="left">
+          <p>05</p>
+        </content>
+      </shape>
+      <shape width="340" height="28" topLeftX="568" topLeftY="252" type="text" id="bbP">
+        <content fontSize="20" fontFamily="思源黑体" color="rgba(0, 28, 84, 1)" bold="true" lineSpacing="multiple:1" textAlign="left">
+          <p>现状与路线</p>
+        </content>
+      </shape>
+      <shape width="340" height="18" topLeftX="568" topLeftY="286" type="text" id="bbf">
+        <content fontSize="11" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="left">
+          <p>失败用例、根因定位与功能规划</p>
+        </content>
+      </shape>
+      <line id="bbV" startX="568" startY="312" endX="900.0015060206806" endY="312">
+        <border color="rgba(203, 213, 225, 1)" width="1"/>
+      </line>
+      <line id="bbn" startX="60" startY="498" endX="900.0005952378843" endY="498">
+        <border color="rgba(203, 213, 225, 1)" width="1"/>
+      </line>
+      <shape width="500" height="20" topLeftX="60" topLeftY="506" type="text" id="bbF">
+        <content fontSize="9" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="left">
+          <p>invana 项目介绍 · 技术评审</p>
+        </content>
+      </shape>
+      <shape width="100" height="20" topLeftX="800" topLeftY="506" type="text" id="bbA">
+        <content fontSize="9" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="right">
+          <p>02 / 10</p>
+        </content>
+      </shape>
+    </data>
+    <note id="bbU">
+      <content/>
+    </note>
+  </slide>
+  <slide id="pYi">
+    <style>
+      <fill id="fYi">
+        <fillColor color="rgba(255, 255, 255, 1)"/>
+      </fill>
+    </style>
+    <data>
+      <shape width="600" height="18" topLeftX="60" topLeftY="40" type="text" id="bRx">
+        <content fontSize="11" fontFamily="思源黑体" color="rgba(0, 112, 186, 1)" bold="true" lineSpacing="multiple:1" textAlign="left">
+          <p>01 · 背景与定位</p>
+        </content>
+      </shape>
+      <shape width="840" height="56" topLeftX="60" topLeftY="64" type="text" id="bRt">
+        <content textType="headline" fontSize="24" fontFamily="思源黑体" color="rgba(0, 28, 84, 1)" bold="true" lineSpacing="multiple:1.15" textAlign="left">
+          <p>订单、定价、库存与对账被收敛为一条可测试的数据流</p>
+        </content>
+      </shape>
+      <line id="bRL" startX="60" startY="128" endX="900.0005952378843" endY="128">
+        <border color="rgba(203, 213, 225, 1)" width="1"/>
+      </line>
+      <shape width="80" height="26" topLeftX="60" topLeftY="170" type="text" id="bRC">
+        <content fontSize="15" fontFamily="思源黑体" color="rgba(0, 48, 135, 1)" bold="true" lineSpacing="multiple:1.3" textAlign="left">
+          <p>定位</p>
+        </content>
+      </shape>
+      <shape width="750" height="26" topLeftX="150" topLeftY="170" type="text" id="bRn">
+        <content fontSize="14" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.2" textAlign="left">
+          <p>库存与订单分析的教学 / 评审项目，运行时无第三方依赖，Python 3.10+ 即可运行</p>
+        </content>
+      </shape>
+      <line id="bRF" startX="60" startY="214" endX="900.0005952378843" endY="214">
+        <border color="rgba(203, 213, 225, 1)" width="1"/>
+      </line>
+      <shape width="80" height="26" topLeftX="60" topLeftY="242" type="text" id="bRw">
+        <content fontSize="15" fontFamily="思源黑体" color="rgba(0, 48, 135, 1)" bold="true" lineSpacing="multiple:1.3" textAlign="left">
+          <p>输入</p>
+        </content>
+      </shape>
+      <shape width="750" height="26" topLeftX="150" topLeftY="242" type="text" id="bRU">
+        <content fontSize="14" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.2" textAlign="left">
+          <p>CSV / JSON 订单与客户数据：tests/fixtures/orders.csv、orders.json、customers.csv</p>
+        </content>
+      </shape>
+      <line id="bRh" startX="60" startY="286" endX="900.0005952378843" endY="286">
+        <border color="rgba(203, 213, 225, 1)" width="1"/>
+      </line>
+      <shape width="80" height="26" topLeftX="60" topLeftY="314" type="text" id="bRc">
+        <content fontSize="15" fontFamily="思源黑体" color="rgba(0, 48, 135, 1)" bold="true" lineSpacing="multiple:1.3" textAlign="left">
+          <p>输出</p>
+        </content>
+      </shape>
+      <shape width="750" height="26" topLeftX="150" topLeftY="314" type="text" id="bRQ">
+        <content fontSize="14" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.2" textAlign="left">
+          <p>行级定价、库存校验结果，以及 services/report 生成的财务对账报表</p>
+        </content>
+      </shape>
+      <line id="bRs" startX="60" startY="358" endX="900.0005952378843" endY="358">
+        <border color="rgba(203, 213, 225, 1)" width="1"/>
+      </line>
+      <shape width="80" height="26" topLeftX="60" topLeftY="386" type="text" id="bRA">
+        <content fontSize="15" fontFamily="思源黑体" color="rgba(0, 48, 135, 1)" bold="true" lineSpacing="multiple:1.3" textAlign="left">
+          <p>运行</p>
+        </content>
+      </shape>
+      <shape width="750" height="26" topLeftX="150" topLeftY="386" type="text" id="bRP">
+        <content fontSize="14" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.2" textAlign="left">
+          <p>PYTHONPATH=src python3 -m invana.cli summary tests/fixtures/orders.csv</p>
+        </content>
+      </shape>
+      <line id="bRa" startX="60" startY="430" endX="900.0005952378843" endY="430">
+        <border color="rgba(203, 213, 225, 1)" width="1"/>
+      </line>
+      <shape width="840" height="18" topLeftX="60" topLeftY="470" type="text" id="bRZ">
+        <content fontSize="9" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="left">
+          <p>数据来源：repo-invana 仓库实际目录（src/invana、tests、docs）</p>
+        </content>
+      </shape>
+      <line id="bRT" startX="60" startY="498" endX="900.0005952378843" endY="498">
+        <border color="rgba(203, 213, 225, 1)" width="1"/>
+      </line>
+      <shape width="500" height="20" topLeftX="60" topLeftY="506" type="text" id="bRo">
+        <content fontSize="9" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="left">
+          <p>invana 项目介绍 · 技术评审</p>
+        </content>
+      </shape>
+      <shape width="100" height="20" topLeftX="800" topLeftY="506" type="text" id="bRv">
+        <content fontSize="9" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="right">
+          <p>03 / 10</p>
+        </content>
+      </shape>
+    </data>
+    <note id="bRy">
+      <content/>
+    </note>
+  </slide>
+  <slide id="pYV">
+    <style>
+      <fill id="fYV">
+        <fillColor color="rgba(255, 255, 255, 1)"/>
+      </fill>
+    </style>
+    <data>
+      <shape width="600" height="18" topLeftX="60" topLeftY="40" type="text" id="bGD">
+        <content fontSize="11" fontFamily="思源黑体" color="rgba(0, 112, 186, 1)" bold="true" lineSpacing="multiple:1" textAlign="left">
+          <p>02 · 分层架构</p>
+        </content>
+      </shape>
+      <shape width="840" height="56" topLeftX="60" topLeftY="64" type="text" id="bbC">
+        <content textType="headline" fontSize="24" fontFamily="思源黑体" color="rgba(0, 28, 84, 1)" bold="true" lineSpacing="multiple:1.15" textAlign="left">
+          <p>数据单向流经四层：adapters → repo → services → cli</p>
+        </content>
+      </shape>
+      <line id="bGG" startX="60" startY="128" endX="900.0005952378843" endY="128">
+        <border color="rgba(203, 213, 225, 1)" width="1"/>
+      </line>
+      <shape width="186" height="96" topLeftX="60" topLeftY="186" presetHandlers="0" type="rect" id="bGX">
+        <fill>
+          <fillColor color="rgba(242, 246, 252, 1)"/>
+        </fill>
+        <border color="rgba(203, 213, 225, 1)" width="1"/>
+        <content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)"/>
+      </shape>
+      <shape width="186" height="6" topLeftX="60" topLeftY="186" presetHandlers="0" type="rect" id="bGV">
+        <fill>
+          <fillColor color="rgba(0, 48, 135, 1)"/>
+        </fill>
+        <content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)"/>
+      </shape>
+      <shape width="158" height="24" topLeftX="74" topLeftY="204" type="text" id="bbp">
+        <content fontSize="16" fontFamily="Roboto Mono" color="rgba(0, 28, 84, 1)" bold="true" lineSpacing="multiple:1" textAlign="left">
+          <p>adapters</p>
+        </content>
+      </shape>
+      <shape width="158" height="20" topLeftX="74" topLeftY="232" type="text" id="bbj">
+        <content fontSize="12" fontFamily="思源黑体" color="rgba(0, 112, 186, 1)" bold="true" lineSpacing="multiple:1.3" textAlign="left">
+          <p>外部数据适配</p>
+        </content>
+      </shape>
+      <shape width="158" height="26" topLeftX="74" topLeftY="252" type="text" id="bbB">
+        <content fontSize="9" fontFamily="Roboto Mono" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="left">
+          <p>csv_reader · json_reader · http_client · retry</p>
+        </content>
+      </shape>
+      <shape width="186" height="96" topLeftX="270" topLeftY="186" presetHandlers="0" type="rect" id="bGI">
+        <fill>
+          <fillColor color="rgba(242, 246, 252, 1)"/>
+        </fill>
+        <border color="rgba(203, 213, 225, 1)" width="1"/>
+        <content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)"/>
+      </shape>
+      <shape width="186" height="6" topLeftX="270" topLeftY="186" presetHandlers="0" type="rect" id="bGm">
+        <fill>
+          <fillColor color="rgba(0, 48, 135, 1)"/>
+        </fill>
+        <content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)"/>
+      </shape>
+      <shape width="158" height="24" topLeftX="284" topLeftY="204" type="text" id="bGy">
+        <content fontSize="16" fontFamily="Roboto Mono" color="rgba(0, 28, 84, 1)" bold="true" lineSpacing="multiple:1" textAlign="left">
+          <p>repo</p>
+        </content>
+      </shape>
+      <shape width="158" height="20" topLeftX="284" topLeftY="232" type="text" id="bba">
+        <content fontSize="12" fontFamily="思源黑体" color="rgba(0, 112, 186, 1)" bold="true" lineSpacing="multiple:1.3" textAlign="left">
+          <p>数据访问</p>
+        </content>
+      </shape>
+      <shape width="158" height="26" topLeftX="284" topLeftY="252" type="text" id="bbK">
+        <content fontSize="9" fontFamily="Roboto Mono" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="left">
+          <p>base · memory · csv_repo · queries</p>
+        </content>
+      </shape>
+      <shape width="186" height="96" topLeftX="480" topLeftY="186" presetHandlers="0" type="rect" id="bGu">
+        <fill>
+          <fillColor color="rgba(242, 246, 252, 1)"/>
+        </fill>
+        <border color="rgba(203, 213, 225, 1)" width="1"/>
+        <content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)"/>
+      </shape>
+      <shape width="186" height="6" topLeftX="480" topLeftY="186" presetHandlers="0" type="rect" id="bGi">
+        <fill>
+          <fillColor color="rgba(0, 48, 135, 1)"/>
+        </fill>
+        <content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)"/>
+      </shape>
+      <shape width="158" height="24" topLeftX="494" topLeftY="204" type="text" id="bGZ">
+        <content fontSize="16" fontFamily="Roboto Mono" color="rgba(0, 28, 84, 1)" bold="true" lineSpacing="multiple:1" textAlign="left">
+          <p>services</p>
+        </content>
+      </shape>
+      <shape width="158" height="20" topLeftX="494" topLeftY="232" type="text" id="bbM">
+        <content fontSize="12" fontFamily="思源黑体" color="rgba(0, 112, 186, 1)" bold="true" lineSpacing="multiple:1.3" textAlign="left">
+          <p>业务服务</p>
+        </content>
+      </shape>
+      <shape width="158" height="26" topLeftX="494" topLeftY="252" type="text" id="bbl">
+        <content fontSize="9" fontFamily="Roboto Mono" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="left">
+          <p>pricing · orders · report · stock · notifications</p>
+        </content>
+      </shape>
+      <shape width="186" height="96" topLeftX="690" topLeftY="186" presetHandlers="0" type="rect" id="bGd">
+        <fill>
+          <fillColor color="rgba(242, 246, 252, 1)"/>
+        </fill>
+        <border color="rgba(203, 213, 225, 1)" width="1"/>
+        <content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)"/>
+      </shape>
+      <shape width="186" height="6" topLeftX="690" topLeftY="186" presetHandlers="0" type="rect" id="bGQ">
+        <fill>
+          <fillColor color="rgba(0, 48, 135, 1)"/>
+        </fill>
+        <content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)"/>
+      </shape>
+      <shape width="158" height="24" topLeftX="704" topLeftY="204" type="text" id="bbr">
+        <content fontSize="16" fontFamily="Roboto Mono" color="rgba(0, 28, 84, 1)" bold="true" lineSpacing="multiple:1" textAlign="left">
+          <p>cli</p>
+        </content>
+      </shape>
+      <shape width="158" height="20" topLeftX="704" topLeftY="232" type="text" id="bbW">
+        <content fontSize="12" fontFamily="思源黑体" color="rgba(0, 112, 186, 1)" bold="true" lineSpacing="multiple:1.3" textAlign="left">
+          <p>命令入口</p>
+        </content>
+      </shape>
+      <shape width="158" height="26" topLeftX="704" topLeftY="252" type="text" id="bbY">
+        <content fontSize="9" fontFamily="Roboto Mono" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="left">
+          <p>invana.cli summary</p>
+        </content>
+      </shape>
+      <line id="bGR" startX="248" startY="234" endX="266.0277563773199" endY="234">
+        <border color="rgba(0, 112, 186, 1)"/>
+        <endArrow type="arrow"/>
+      </line>
+      <line id="bGq" startX="458" startY="234" endX="476.0277563773199" endY="234">
+        <border color="rgba(0, 112, 186, 1)"/>
+        <endArrow type="arrow"/>
+      </line>
+      <line id="bGn" startX="668" startY="234" endX="686.02775637732" endY="234">
+        <border color="rgba(0, 112, 186, 1)"/>
+        <endArrow type="arrow"/>
+      </line>
+      <shape width="200" height="60" topLeftX="240" topLeftY="330" presetHandlers="0" type="rect" id="bbS">
+        <fill>
+          <fillColor color="rgba(255, 255, 255, 1)"/>
+        </fill>
+        <border color="rgba(0, 112, 186, 1)" width="1"/>
+        <content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)"/>
+      </shape>
+      <shape width="172" height="20" topLeftX="254" topLeftY="342" type="text" id="bbk">
+        <content fontSize="14" fontFamily="Roboto Mono" color="rgba(0, 28, 84, 1)" bold="true" lineSpacing="multiple:1.3" textAlign="left">
+          <p>models</p>
+        </content>
+      </shape>
+      <shape width="172" height="16" topLeftX="254" topLeftY="366" type="text" id="bGe">
+        <content fontSize="9" fontFamily="Roboto Mono" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="left">
+          <p>order · customer · item · enums</p>
+        </content>
+      </shape>
+      <shape width="200" height="60" topLeftX="520" topLeftY="330" presetHandlers="0" type="rect" id="bGf">
+        <fill>
+          <fillColor color="rgba(255, 255, 255, 1)"/>
+        </fill>
+        <border color="rgba(0, 112, 186, 1)" width="1"/>
+        <content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)"/>
+      </shape>
+      <shape width="172" height="20" topLeftX="534" topLeftY="342" type="text" id="bGH">
+        <content fontSize="14" fontFamily="Roboto Mono" color="rgba(0, 28, 84, 1)" bold="true" lineSpacing="multiple:1.3" textAlign="left">
+          <p>utils</p>
+        </content>
+      </shape>
+      <shape width="172" height="16" topLeftX="534" topLeftY="366" type="text" id="bbJ">
+        <content fontSize="9" fontFamily="Roboto Mono" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="left">
+          <p>currency · dates · validators …</p>
+        </content>
+      </shape>
+      <line id="bbN" startX="340" startY="330" endX="340" endY="283.98913171869066">
+        <border color="rgba(203, 213, 225, 1)" width="1"/>
+        <endArrow type="arrow"/>
+      </line>
+      <line id="bGb" startX="620" startY="330" endX="620" endY="283.98913171869066">
+        <border color="rgba(203, 213, 225, 1)" width="1"/>
+        <endArrow type="arrow"/>
+      </line>
+      <shape width="840" height="56" topLeftX="60" topLeftY="420" type="text" id="bGO">
+        <content fontSize="12" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.6" textAlign="left">
+          <p>关键约束：services.pricing 是金额计算的唯一入口；utils.currency.round_money 是全项目唯一允许处理舍入的位置。</p>
+          <p>models 被 repo 与 services 共享；utils 仅被 services 调用，不允许反向依赖。</p>
+        </content>
+      </shape>
+      <line id="bGz" startX="60" startY="498" endX="900.0005952378843" endY="498">
+        <border color="rgba(203, 213, 225, 1)" width="1"/>
+      </line>
+      <shape width="500" height="20" topLeftX="60" topLeftY="506" type="text" id="bbc">
+        <content fontSize="9" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="left">
+          <p>invana 项目介绍 · 技术评审</p>
+        </content>
+      </shape>
+      <shape width="100" height="20" topLeftX="800" topLeftY="506" type="text" id="bbg">
+        <content fontSize="9" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="right">
+          <p>04 / 10</p>
+        </content>
+      </shape>
+    </data>
+    <note id="bGE">
+      <content/>
+    </note>
+  </slide>
+  <slide id="pYF">
+    <style>
+      <fill id="fYF">
+        <fillColor color="rgba(255, 255, 255, 1)"/>
+      </fill>
+    </style>
+    <data>
+      <shape width="600" height="18" topLeftX="60" topLeftY="40" type="text" id="bGL">
+        <content fontSize="11" fontFamily="思源黑体" color="rgba(0, 112, 186, 1)" bold="true" lineSpacing="multiple:1" textAlign="left">
+          <p>03 · 核心模块 / models</p>
+        </content>
+      </shape>
+      <shape width="840" height="56" topLeftX="60" topLeftY="64" type="text" id="bGC">
+        <content textType="headline" fontSize="24" fontFamily="思源黑体" color="rgba(0, 28, 84, 1)" bold="true" lineSpacing="multiple:1.15" textAlign="left">
+          <p>models 层用四个模型固定订单数据的语义边界</p>
+        </content>
+      </shape>
+      <line id="bGr" startX="60" startY="128" endX="900.0005952378843" endY="128">
+        <border color="rgba(203, 213, 225, 1)" width="1"/>
+      </line>
+      <table id="bGg" width="840" height="242" topLeftX="60" topLeftY="158">
+        <colgroup>
+          <col span="1" width="190"/>
+          <col span="1" width="250"/>
+          <col span="1" width="400"/>
+        </colgroup>
+        <tr height="34">
+          <td id="bGS">
+            <fill>
+              <fillColor color="rgba(0, 48, 135, 1)"/>
+            </fill>
+            <content fontSize="12" fontFamily="思源黑体" color="rgba(255, 255, 255, 1)" bold="true" textAlign="left">
+              <p>模块</p>
+            </content>
+          </td>
+          <td id="bGp">
+            <fill>
+              <fillColor color="rgba(0, 48, 135, 1)"/>
+            </fill>
+            <content fontSize="12" fontFamily="思源黑体" color="rgba(255, 255, 255, 1)" bold="true" textAlign="left">
+              <p>职责</p>
+            </content>
+          </td>
+          <td id="bGs">
+            <fill>
+              <fillColor color="rgba(0, 48, 135, 1)"/>
+            </fill>
+            <content fontSize="12" fontFamily="思源黑体" color="rgba(255, 255, 255, 1)" bold="true" textAlign="left">
+              <p>关键内容</p>
+            </content>
+          </td>
+        </tr>
+        <tr height="52">
+          <td id="bGA">
+            <fill>
+              <fillColor/>
+            </fill>
+            <content fontSize="11" fontFamily="Roboto Mono" color="rgba(71, 85, 105, 1)" bold="true" textAlign="left">
+              <p>enums.py</p>
+            </content>
+          </td>
+          <td id="bGP">
+            <fill>
+              <fillColor/>
+            </fill>
+            <content fontSize="11" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="false" textAlign="left">
+              <p>枚举与状态取值域</p>
+            </content>
+          </td>
+          <td id="bGa">
+            <fill>
+              <fillColor/>
+            </fill>
+            <content fontSize="11" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="false" textAlign="left">
+              <p>订单状态、折扣类型等枚举，禁止散落魔法字符串</p>
+            </content>
+          </td>
+        </tr>
+        <tr height="52">
+          <td id="bGJ">
+            <fill>
+              <fillColor color="rgba(242, 246, 252, 1)"/>
+            </fill>
+            <content fontSize="11" fontFamily="Roboto Mono" color="rgba(71, 85, 105, 1)" bold="true" textAlign="left">
+              <p>order.py</p>
+            </content>
+          </td>
+          <td id="bGK">
+            <fill>
+              <fillColor color="rgba(242, 246, 252, 1)"/>
+            </fill>
+            <content fontSize="11" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="false" textAlign="left">
+              <p>订单聚合根</p>
+            </content>
+          </td>
+          <td id="bGF">
+            <fill>
+              <fillColor color="rgba(242, 246, 252, 1)"/>
+            </fill>
+            <content fontSize="11" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="false" textAlign="left">
+              <p>订单头与行项目 line；折扣、税费在行级计算</p>
+            </content>
+          </td>
+        </tr>
+        <tr height="52">
+          <td id="bGU">
+            <fill>
+              <fillColor/>
+            </fill>
+            <content fontSize="11" fontFamily="Roboto Mono" color="rgba(71, 85, 105, 1)" bold="true" textAlign="left">
+              <p>customer.py</p>
+            </content>
+          </td>
+          <td id="bGh">
+            <fill>
+              <fillColor/>
+            </fill>
+            <content fontSize="11" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="false" textAlign="left">
+              <p>客户实体</p>
+            </content>
+          </td>
+          <td id="bGc">
+            <fill>
+              <fillColor/>
+            </fill>
+            <content fontSize="11" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="false" textAlign="left">
+              <p>客户编号、等级与分组字段，支撑分组查询</p>
+            </content>
+          </td>
+        </tr>
+        <tr height="52">
+          <td id="bGM">
+            <fill>
+              <fillColor color="rgba(242, 246, 252, 1)"/>
+            </fill>
+            <content fontSize="11" fontFamily="Roboto Mono" color="rgba(71, 85, 105, 1)" bold="true" textAlign="left">
+              <p>item.py</p>
+            </content>
+          </td>
+          <td id="bGN">
+            <fill>
+              <fillColor color="rgba(242, 246, 252, 1)"/>
+            </fill>
+            <content fontSize="11" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="false" textAlign="left">
+              <p>商品实体</p>
+            </content>
+          </td>
+          <td id="bGw">
+            <fill>
+              <fillColor color="rgba(242, 246, 252, 1)"/>
+            </fill>
+            <content fontSize="11" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="false" textAlign="left">
+              <p>SKU、单价、税率，行级金额的输入来源</p>
+            </content>
+          </td>
+        </tr>
+      </table>
+      <shape width="840" height="60" topLeftX="60" topLeftY="408" type="text" id="bGx">
+        <content fontSize="13" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.6" textAlign="left">
+          <p>设计含义：订单合计不是单独录入的字段，而是各行金额之和；</p>
+          <p>这与 spec.md 第 3 条“订单合计为各行之和，不重复舍入”直接对应。</p>
+        </content>
+      </shape>
+      <line id="bGT" startX="60" startY="498" endX="900.0005952378843" endY="498">
+        <border color="rgba(203, 213, 225, 1)" width="1"/>
+      </line>
+      <shape width="500" height="20" topLeftX="60" topLeftY="506" type="text" id="bGo">
+        <content fontSize="9" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="left">
+          <p>invana 项目介绍 · 技术评审</p>
+        </content>
+      </shape>
+      <shape width="100" height="20" topLeftX="800" topLeftY="506" type="text" id="bGv">
+        <content fontSize="9" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="right">
+          <p>05 / 10</p>
+        </content>
+      </shape>
+    </data>
+    <note id="bGt">
+      <content/>
+    </note>
+  </slide>
+  <slide id="pYW">
+    <style>
+      <fill id="fYW">
+        <fillColor color="rgba(255, 255, 255, 1)"/>
+      </fill>
+    </style>
+    <data>
+      <shape width="600" height="18" topLeftX="60" topLeftY="40" type="text" id="bGB">
+        <content fontSize="11" fontFamily="思源黑体" color="rgba(0, 112, 186, 1)" bold="true" lineSpacing="multiple:1" textAlign="left">
+          <p>03 · 核心模块 / repo</p>
+        </content>
+      </shape>
+      <shape width="840" height="56" topLeftX="60" topLeftY="64" type="text" id="bRe">
+        <content textType="headline" fontSize="24" fontFamily="思源黑体" color="rgba(0, 28, 84, 1)" bold="true" lineSpacing="multiple:1.15" textAlign="left">
+          <p>repo 层面向接口编程，内存与 CSV 两种实现可互换</p>
+        </content>
+      </shape>
+      <line id="bRI" startX="60" startY="128" endX="900.0005952378843" endY="128">
+        <border color="rgba(203, 213, 225, 1)" width="1"/>
+      </line>
+      <table id="bRf" width="840" height="242" topLeftX="60" topLeftY="158">
+        <colgroup>
+          <col span="1" width="190"/>
+          <col span="1" width="250"/>
+          <col span="1" width="400"/>
+        </colgroup>
+        <tr height="34">
+          <td id="bRO">
+            <fill>
+              <fillColor color="rgba(0, 48, 135, 1)"/>
+            </fill>
+            <content fontSize="12" fontFamily="思源黑体" color="rgba(255, 255, 255, 1)" bold="true" textAlign="left">
+              <p>模块</p>
+            </content>
+          </td>
+          <td id="bRm">
+            <fill>
+              <fillColor color="rgba(0, 48, 135, 1)"/>
+            </fill>
+            <content fontSize="12" fontFamily="思源黑体" color="rgba(255, 255, 255, 1)" bold="true" textAlign="left">
+              <p>角色</p>
+            </content>
+          </td>
+          <td id="bRH">
+            <fill>
+              <fillColor color="rgba(0, 48, 135, 1)"/>
+            </fill>
+            <content fontSize="12" fontFamily="思源黑体" color="rgba(255, 255, 255, 1)" bold="true" textAlign="left">
+              <p>说明</p>
+            </content>
+          </td>
+        </tr>
+        <tr height="52">
+          <td id="bGW">
+            <fill>
+              <fillColor/>
+            </fill>
+            <content fontSize="11" fontFamily="Roboto Mono" color="rgba(71, 85, 105, 1)" bold="true" textAlign="left">
+              <p>base.py</p>
+            </content>
+          </td>
+          <td id="bRG">
+            <fill>
+              <fillColor/>
+            </fill>
+            <content fontSize="11" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="false" textAlign="left">
+              <p>仓库抽象接口</p>
+            </content>
+          </td>
+          <td id="bRd">
+            <fill>
+              <fillColor/>
+            </fill>
+            <content fontSize="11" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="false" textAlign="left">
+              <p>定义订单、客户、商品的读写契约，上层只依赖接口</p>
+            </content>
+          </td>
+        </tr>
+        <tr height="52">
+          <td id="bRE">
+            <fill>
+              <fillColor color="rgba(242, 246, 252, 1)"/>
+            </fill>
+            <content fontSize="11" fontFamily="Roboto Mono" color="rgba(71, 85, 105, 1)" bold="true" textAlign="left">
+              <p>memory.py</p>
+            </content>
+          </td>
+          <td id="bRi">
+            <fill>
+              <fillColor color="rgba(242, 246, 252, 1)"/>
+            </fill>
+            <content fontSize="11" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="false" textAlign="left">
+              <p>内存实现</p>
+            </content>
+          </td>
+          <td id="bRz">
+            <fill>
+              <fillColor color="rgba(242, 246, 252, 1)"/>
+            </fill>
+            <content fontSize="11" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="false" textAlign="left">
+              <p>测试与样例数据的默认实现，无 IO 副作用</p>
+            </content>
+          </td>
+        </tr>
+        <tr height="52">
+          <td id="bGk">
+            <fill>
+              <fillColor/>
+            </fill>
+            <content fontSize="11" fontFamily="Roboto Mono" color="rgba(71, 85, 105, 1)" bold="true" textAlign="left">
+              <p>csv_repo.py</p>
+            </content>
+          </td>
+          <td id="bGj">
+            <fill>
+              <fillColor/>
+            </fill>
+            <content fontSize="11" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="false" textAlign="left">
+              <p>CSV 实现</p>
+            </content>
+          </td>
+          <td id="bRR">
+            <fill>
+              <fillColor/>
+            </fill>
+            <content fontSize="11" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="false" textAlign="left">
+              <p>对接 tests/fixtures 下的 CSV 数据文件</p>
+            </content>
+          </td>
+        </tr>
+        <tr height="52">
+          <td id="bRX">
+            <fill>
+              <fillColor color="rgba(242, 246, 252, 1)"/>
+            </fill>
+            <content fontSize="11" fontFamily="Roboto Mono" color="rgba(71, 85, 105, 1)" bold="true" textAlign="left">
+              <p>queries.py</p>
+            </content>
+          </td>
+          <td id="bRq">
+            <fill>
+              <fillColor color="rgba(242, 246, 252, 1)"/>
+            </fill>
+            <content fontSize="11" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="false" textAlign="left">
+              <p>查询封装</p>
+            </content>
+          </td>
+          <td id="bRD">
+            <fill>
+              <fillColor color="rgba(242, 246, 252, 1)"/>
+            </fill>
+            <content fontSize="11" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="false" textAlign="left">
+              <p>订单汇总、按客户分组等跨实体查询</p>
+            </content>
+          </td>
+        </tr>
+      </table>
+      <shape width="840" height="60" topLeftX="60" topLeftY="408" type="text" id="bRV">
+        <content fontSize="13" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.6" textAlign="left">
+          <p>依赖方向：adapters 负责把 CSV / JSON 读成内存对象，repo 负责持久化与查询；</p>
+          <p>services 不直接接触文件格式，切换数据源时业务代码不变。</p>
+        </content>
+      </shape>
+      <line id="bGl" startX="60" startY="498" endX="900.0005952378843" endY="498">
+        <border color="rgba(203, 213, 225, 1)" width="1"/>
+      </line>
+      <shape width="500" height="20" topLeftX="60" topLeftY="506" type="text" id="bRb">
+        <content fontSize="9" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="left">
+          <p>invana 项目介绍 · 技术评审</p>
+        </content>
+      </shape>
+      <shape width="100" height="20" topLeftX="800" topLeftY="506" type="text" id="bRu">
+        <content fontSize="9" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="right">
+          <p>06 / 10</p>
+        </content>
+      </shape>
+    </data>
+    <note id="bGY">
+      <content/>
+    </note>
+  </slide>
+  <slide id="pYc">
+    <style>
+      <fill id="fYc">
+        <fillColor color="rgba(255, 255, 255, 1)"/>
+      </fill>
+    </style>
+    <data>
+      <shape width="600" height="18" topLeftX="60" topLeftY="40" type="text" id="bRW">
+        <content fontSize="11" fontFamily="思源黑体" color="rgba(0, 112, 186, 1)" bold="true" lineSpacing="multiple:1" textAlign="left">
+          <p>03 · 核心模块 / services</p>
+        </content>
+      </shape>
+      <shape width="840" height="56" topLeftX="60" topLeftY="64" type="text" id="beG">
+        <content textType="headline" fontSize="24" fontFamily="思源黑体" color="rgba(0, 28, 84, 1)" bold="true" lineSpacing="multiple:1.15" textAlign="left">
+          <p>所有金额经 pricing 与 round_money，report 只汇总行级金额</p>
+        </content>
+      </shape>
+      <line id="beX" startX="60" startY="128" endX="900.0005952378843" endY="128">
+        <border color="rgba(203, 213, 225, 1)" width="1"/>
+      </line>
+      <shape width="200" height="84" topLeftX="80" topLeftY="160" presetHandlers="0" type="rect" id="bRr">
+        <fill>
+          <fillColor color="rgba(242, 246, 252, 1)"/>
+        </fill>
+        <border color="rgba(203, 213, 225, 1)" width="1"/>
+        <content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)"/>
+      </shape>
+      <shape width="168" height="22" topLeftX="96" topLeftY="174" type="text" id="bRp">
+        <content fontSize="14" fontFamily="Roboto Mono" color="rgba(0, 28, 84, 1)" bold="true" lineSpacing="multiple:1.3" textAlign="left">
+          <p>services.pricing</p>
+        </content>
+      </shape>
+      <shape width="168" height="32" topLeftX="96" topLeftY="204" type="text" id="bRk">
+        <content fontSize="11" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.4" textAlign="left">
+          <p>行级折扣、税费计算 Decimal 舍入</p>
+        </content>
+      </shape>
+      <line id="bRj" startX="286" startY="202" endX="340.0092584655631" endY="202">
+        <border color="rgba(0, 112, 186, 1)"/>
+        <endArrow type="arrow"/>
+      </line>
+      <shape width="46" height="16" topLeftX="290" topLeftY="178" type="text" id="beR">
+        <content fontSize="9" fontFamily="思源黑体" color="rgba(0, 112, 186, 1)" lineSpacing="multiple:1.3" textAlign="left">
+          <p>唯一入口</p>
+        </content>
+      </shape>
+      <shape width="200" height="84" topLeftX="346" topLeftY="160" presetHandlers="0" type="rect" id="beI">
+        <fill>
+          <fillColor color="rgba(242, 246, 252, 1)"/>
+        </fill>
+        <border color="rgba(203, 213, 225, 1)" width="1"/>
+        <content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)"/>
+      </shape>
+      <shape width="168" height="22" topLeftX="362" topLeftY="174" type="text" id="bRS">
+        <content fontSize="14" fontFamily="Roboto Mono" color="rgba(0, 28, 84, 1)" bold="true" lineSpacing="multiple:1.3" textAlign="left">
+          <p>utils.currency</p>
+        </content>
+      </shape>
+      <shape width="168" height="32" topLeftX="362" topLeftY="204" type="text" id="bRK">
+        <content fontSize="11" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.4" textAlign="left">
+          <p>round_money ROUND_HALF_UP 两位小数</p>
+        </content>
+      </shape>
+      <line id="bRY" startX="552" startY="202" endX="606.0092584655631" endY="202">
+        <border color="rgba(0, 112, 186, 1)"/>
+        <endArrow type="arrow"/>
+      </line>
+      <shape width="200" height="84" topLeftX="612" topLeftY="160" presetHandlers="0" type="rect" id="bRB">
+        <fill>
+          <fillColor color="rgba(242, 246, 252, 1)"/>
+        </fill>
+        <border color="rgba(203, 213, 225, 1)" width="1"/>
+        <content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)"/>
+      </shape>
+      <shape width="168" height="22" topLeftX="628" topLeftY="174" type="text" id="bee">
+        <content fontSize="14" fontFamily="Roboto Mono" color="rgba(0, 28, 84, 1)" bold="true" lineSpacing="multiple:1.3" textAlign="left">
+          <p>services.report</p>
+        </content>
+      </shape>
+      <shape width="168" height="32" topLeftX="628" topLeftY="204" type="text" id="beu">
+        <content fontSize="11" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.4" textAlign="left">
+          <p>订单合计、对账总额 财务对账依赖其输出</p>
+        </content>
+      </shape>
+      <shape width="300" height="20" topLeftX="80" topLeftY="286" type="text" id="beO">
+        <content fontSize="13" fontFamily="思源黑体" color="rgba(0, 112, 186, 1)" bold="true" lineSpacing="multiple:1.3" textAlign="left">
+          <p>金额计算规范（docs/spec.md）</p>
+        </content>
+      </shape>
+      <shape width="500" height="130" topLeftX="80" topLeftY="316" type="text" id="bRJ">
+        <content fontSize="12" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.9" textAlign="left">
+          <p>1. 金额运算一律使用 Decimal，禁止二进制浮点参与</p>
+          <p>2. 展示与落库保留 2 位小数，四舍五入 ROUND_HALF_UP</p>
+          <p>3. 折扣、税费在行级计算并舍入，合计为各行之和</p>
+          <p>4. 默认币种 CNY，对账以行级金额为准</p>
+        </content>
+      </shape>
+      <shape width="200" height="120" topLeftX="612" topLeftY="300" presetHandlers="0" type="rect" id="bRN">
+        <fill>
+          <fillColor color="rgba(255, 255, 255, 1)"/>
+        </fill>
+        <border color="rgba(0, 112, 186, 1)" width="1"/>
+        <content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)"/>
+      </shape>
+      <shape width="168" height="20" topLeftX="628" topLeftY="316" type="text" id="bRl">
+        <content fontSize="12" fontFamily="思源黑体" color="rgba(0, 112, 186, 1)" bold="true" lineSpacing="multiple:1.3" textAlign="left">
+          <p>周边服务</p>
+        </content>
+      </shape>
+      <shape width="168" height="64" topLeftX="628" topLeftY="344" type="text" id="beb">
+        <content fontSize="11" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.7" textAlign="left">
+          <p>orders 下单编排</p>
+          <p>stock 库存校验</p>
+          <p>notifications 通知</p>
+        </content>
+      </shape>
+      <line id="bed" startX="60" startY="498" endX="900.0005952378843" endY="498">
+        <border color="rgba(203, 213, 225, 1)" width="1"/>
+      </line>
+      <shape width="500" height="20" topLeftX="60" topLeftY="506" type="text" id="beE">
+        <content fontSize="9" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="left">
+          <p>invana 项目介绍 · 技术评审</p>
+        </content>
+      </shape>
+      <shape width="100" height="20" topLeftX="800" topLeftY="506" type="text" id="bRM">
+        <content fontSize="9" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="right">
+          <p>07 / 10</p>
+        </content>
+      </shape>
+    </data>
+    <note id="bRg">
+      <content/>
+    </note>
+  </slide>
+  <slide id="pYr">
+    <style>
+      <fill id="fYr">
+        <fillColor color="rgba(255, 255, 255, 1)"/>
+      </fill>
+    </style>
+    <data>
+      <shape width="600" height="18" topLeftX="60" topLeftY="40" type="text" id="bep">
+        <content fontSize="11" fontFamily="思源黑体" color="rgba(0, 112, 186, 1)" bold="true" lineSpacing="multiple:1" textAlign="left">
+          <p>03 · 核心模块 / adapters · utils</p>
+        </content>
+      </shape>
+      <shape width="840" height="56" topLeftX="60" topLeftY="64" type="text" id="bej">
+        <content textType="headline" fontSize="24" fontFamily="思源黑体" color="rgba(0, 28, 84, 1)" bold="true" lineSpacing="multiple:1.15" textAlign="left">
+          <p>adapters 隔离外部 IO，utils 收敛通用能力</p>
+        </content>
+      </shape>
+      <line id="bud" startX="60" startY="128" endX="900.0005952378843" endY="128">
+        <border color="rgba(203, 213, 225, 1)" width="1"/>
+      </line>
+      <shape width="400" height="22" topLeftX="60" topLeftY="158" type="text" id="beK">
+        <content fontSize="15" fontFamily="思源黑体" color="rgba(0, 48, 135, 1)" bold="true" lineSpacing="multiple:1.3" textAlign="left">
+          <p>adapters · 外部数据适配</p>
+        </content>
+      </shape>
+      <line id="beB" startX="60" startY="188" endX="460.0012499980469" endY="188">
+        <border color="rgba(203, 213, 225, 1)" width="1"/>
+      </line>
+      <shape width="170" height="20" topLeftX="60" topLeftY="206" type="text" id="buX">
+        <content fontSize="12" fontFamily="Roboto Mono" color="rgba(0, 28, 84, 1)" bold="true" lineSpacing="multiple:1.3" textAlign="left">
+          <p>csv_reader</p>
+        </content>
+      </shape>
+      <shape width="220" height="20" topLeftX="240" topLeftY="206" type="text" id="bec">
+        <content fontSize="12" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="left">
+          <p>CSV 读取与行解析</p>
+        </content>
+      </shape>
+      <shape width="170" height="20" topLeftX="60" topLeftY="254" type="text" id="beN">
+        <content fontSize="12" fontFamily="Roboto Mono" color="rgba(0, 28, 84, 1)" bold="true" lineSpacing="multiple:1.3" textAlign="left">
+          <p>json_reader</p>
+        </content>
+      </shape>
+      <shape width="220" height="20" topLeftX="240" topLeftY="254" type="text" id="buI">
+        <content fontSize="12" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="left">
+          <p>JSON 订单读取</p>
+        </content>
+      </shape>
+      <shape width="170" height="20" topLeftX="60" topLeftY="302" type="text" id="beo">
+        <content fontSize="12" fontFamily="Roboto Mono" color="rgba(0, 28, 84, 1)" bold="true" lineSpacing="multiple:1.3" textAlign="left">
+          <p>http_client</p>
+        </content>
+      </shape>
+      <shape width="220" height="20" topLeftX="240" topLeftY="302" type="text" id="beC">
+        <content fontSize="12" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="left">
+          <p>HTTP 访问封装</p>
+        </content>
+      </shape>
+      <shape width="170" height="20" topLeftX="60" topLeftY="350" type="text" id="beg">
+        <content fontSize="12" fontFamily="Roboto Mono" color="rgba(0, 28, 84, 1)" bold="true" lineSpacing="multiple:1.3" textAlign="left">
+          <p>retry</p>
+        </content>
+      </shape>
+      <shape width="220" height="20" topLeftX="240" topLeftY="350" type="text" id="bub">
+        <content fontSize="12" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="left">
+          <p>失败重试策略</p>
+        </content>
+      </shape>
+      <shape width="400" height="22" topLeftX="500" topLeftY="158" type="text" id="beP">
+        <content fontSize="15" fontFamily="思源黑体" color="rgba(0, 48, 135, 1)" bold="true" lineSpacing="multiple:1.3" textAlign="left">
+          <p>utils · 通用工具</p>
+        </content>
+      </shape>
+      <line id="beS" startX="500" startY="188" endX="900.0012499980469" endY="188">
+        <border color="rgba(203, 213, 225, 1)" width="1"/>
+      </line>
+      <shape width="190" height="20" topLeftX="500" topLeftY="206" type="text" id="bek">
+        <content fontSize="12" fontFamily="Roboto Mono" color="rgba(0, 28, 84, 1)" bold="true" lineSpacing="multiple:1.3" textAlign="left">
+          <p>currency</p>
+        </content>
+      </shape>
+      <shape width="210" height="20" topLeftX="690" topLeftY="206" type="text" id="buG">
+        <content fontSize="12" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="left">
+          <p>货币舍入（唯一舍入点）</p>
+        </content>
+      </shape>
+      <shape width="190" height="20" topLeftX="500" topLeftY="248" type="text" id="beh">
+        <content fontSize="12" fontFamily="Roboto Mono" color="rgba(0, 28, 84, 1)" bold="true" lineSpacing="multiple:1.3" textAlign="left">
+          <p>dates</p>
+        </content>
+      </shape>
+      <shape width="210" height="20" topLeftX="690" topLeftY="248" type="text" id="beJ">
+        <content fontSize="12" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="left">
+          <p>日期处理</p>
+        </content>
+      </shape>
+      <shape width="190" height="20" topLeftX="500" topLeftY="290" type="text" id="beY">
+        <content fontSize="12" fontFamily="Roboto Mono" color="rgba(0, 28, 84, 1)" bold="true" lineSpacing="multiple:1.3" textAlign="left">
+          <p>validators</p>
+        </content>
+      </shape>
+      <shape width="210" height="20" topLeftX="690" topLeftY="290" type="text" id="buR">
+        <content fontSize="12" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="left">
+          <p>输入校验</p>
+        </content>
+      </shape>
+      <shape width="190" height="20" topLeftX="500" topLeftY="332" type="text" id="beL">
+        <content fontSize="12" fontFamily="Roboto Mono" color="rgba(0, 28, 84, 1)" bold="true" lineSpacing="multiple:1.3" textAlign="left">
+          <p>formatters</p>
+        </content>
+      </shape>
+      <shape width="210" height="20" topLeftX="690" topLeftY="332" type="text" id="beM">
+        <content fontSize="12" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="left">
+          <p>展示格式化</p>
+        </content>
+      </shape>
+      <shape width="190" height="20" topLeftX="500" topLeftY="374" type="text" id="bel">
+        <content fontSize="12" fontFamily="Roboto Mono" color="rgba(0, 28, 84, 1)" bold="true" lineSpacing="multiple:1.3" textAlign="left">
+          <p>ids / mathx / text</p>
+        </content>
+      </shape>
+      <shape width="210" height="20" topLeftX="690" topLeftY="374" type="text" id="bue">
+        <content fontSize="12" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="left">
+          <p>编号、数值与文本工具</p>
+        </content>
+      </shape>
+      <shape width="840" height="40" topLeftX="60" topLeftY="440" type="text" id="bev">
+        <content fontSize="12" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="left">
+          <p>注意：currency 是全项目唯一允许处理舍入的位置，其他模块不得自行 round，避免舍入口径分叉。</p>
+        </content>
+      </shape>
+      <line id="ber" startX="60" startY="498" endX="900.0005952378843" endY="498">
+        <border color="rgba(203, 213, 225, 1)" width="1"/>
+      </line>
+      <shape width="500" height="20" topLeftX="60" topLeftY="506" type="text" id="beW">
+        <content fontSize="9" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="left">
+          <p>invana 项目介绍 · 技术评审</p>
+        </content>
+      </shape>
+      <shape width="100" height="20" topLeftX="800" topLeftY="506" type="text" id="buu">
+        <content fontSize="9" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="right">
+          <p>08 / 10</p>
+        </content>
+      </shape>
+    </data>
+    <note id="bea">
+      <content/>
+    </note>
+  </slide>
+  <slide id="pYl">
+    <style>
+      <fill id="fYl">
+        <fillColor color="rgba(255, 255, 255, 1)"/>
+      </fill>
+    </style>
+    <data>
+      <shape width="600" height="18" topLeftX="60" topLeftY="40" type="text" id="beH">
+        <content fontSize="11" fontFamily="思源黑体" color="rgba(0, 112, 186, 1)" bold="true" lineSpacing="multiple:1" textAlign="left">
+          <p>04 · 质量与现状</p>
+        </content>
+      </shape>
+      <shape width="840" height="56" topLeftX="60" topLeftY="64" type="text" id="bey">
+        <content textType="headline" fontSize="24" fontFamily="思源黑体" color="rgba(0, 28, 84, 1)" bold="true" lineSpacing="multiple:1.15" textAlign="left">
+          <p>23 个用例中 21 个通过，2 个对账用例失败且根因指向舍入方向</p>
+        </content>
+      </shape>
+      <line id="bew" startX="60" startY="128" endX="900.0005952378843" endY="128">
+        <border color="rgba(203, 213, 225, 1)" width="1"/>
+      </line>
+      <shape width="200" height="64" topLeftX="80" topLeftY="156" type="text" id="beU">
+        <content textType="headline" fontSize="56" fontFamily="思源黑体" color="rgba(0, 48, 135, 1)" bold="true" lineSpacing="multiple:1" textAlign="left" wrap="false">
+          <p>23</p>
+        </content>
+      </shape>
+      <shape width="200" height="20" topLeftX="80" topLeftY="226" type="text" id="bef">
+        <content fontSize="13" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="left">
+          <p>用例总数</p>
+        </content>
+      </shape>
+      <shape width="200" height="64" topLeftX="340" topLeftY="156" type="text" id="beV">
+        <content textType="headline" fontSize="56" fontFamily="思源黑体" color="rgba(0, 48, 135, 1)" bold="true" lineSpacing="multiple:1" textAlign="left" wrap="false">
+          <p>21</p>
+        </content>
+      </shape>
+      <shape width="200" height="20" topLeftX="340" topLeftY="226" type="text" id="ben">
+        <content fontSize="13" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="left">
+          <p>通过</p>
+        </content>
+      </shape>
+      <shape width="200" height="64" topLeftX="600" topLeftY="156" type="text" id="beF">
+        <content textType="headline" fontSize="56" fontFamily="思源黑体" color="rgba(0, 48, 135, 1)" bold="true" lineSpacing="multiple:1" textAlign="left" wrap="false">
+          <p>2</p>
+        </content>
+      </shape>
+      <shape width="200" height="20" topLeftX="600" topLeftY="226" type="text" id="beA">
+        <content fontSize="13" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="left">
+          <p>失败（对账）</p>
+        </content>
+      </shape>
+      <line id="beq" startX="60" startY="268" endX="900.0005952378843" endY="268">
+        <border color="rgba(203, 213, 225, 1)" width="1"/>
+      </line>
+      <shape width="840" height="20" topLeftX="60" topLeftY="290" type="text" id="beD">
+        <content fontSize="13" fontFamily="思源黑体" color="rgba(0, 112, 186, 1)" bold="true" lineSpacing="multiple:1.3" textAlign="left">
+          <p>失败用例（tests/test_report_totals.py）</p>
+        </content>
+      </shape>
+      <shape width="360" height="20" topLeftX="60" topLeftY="320" type="text" id="beQ">
+        <content fontSize="11" fontFamily="Roboto Mono" color="rgba(0, 28, 84, 1)" bold="true" lineSpacing="multiple:1.3" textAlign="left">
+          <p>test_order_totals_match_finance</p>
+        </content>
+      </shape>
+      <shape width="470" height="20" topLeftX="430" topLeftY="320" type="text" id="bes">
+        <content fontSize="11" fontFamily="Roboto Mono" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="left">
+          <p>SO-1001 实测 88.53 ≠ 期望 88.55；SO-1003 实测 146.52 ≠ 期望 146.53</p>
+        </content>
+      </shape>
+      <shape width="360" height="20" topLeftX="60" topLeftY="354" type="text" id="beT">
+        <content fontSize="11" fontFamily="Roboto Mono" color="rgba(0, 28, 84, 1)" bold="true" lineSpacing="multiple:1.3" textAlign="left">
+          <p>test_grand_total_matches_finance</p>
+        </content>
+      </shape>
+      <shape width="470" height="20" topLeftX="430" topLeftY="354" type="text" id="bei">
+        <content fontSize="11" fontFamily="Roboto Mono" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="left">
+          <p>对账总额实测 476.25 ≠ 期望 476.28</p>
+        </content>
+      </shape>
+      <shape width="840" height="70" topLeftX="60" topLeftY="408" type="text" id="bez">
+        <content fontSize="12" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.6" textAlign="left">
+          <p>症状跨层传导：currency.round_money 使用 ROUND_DOWN 截断 → pricing 行级金额 → report 汇总 → 对账测试失败。</p>
+          <p>约束：不得修改任何测试文件；要求最小改动；修复后以 pytest 全绿作为完成判据。</p>
+        </content>
+      </shape>
+      <line id="beZ" startX="60" startY="498" endX="900.0005952378843" endY="498">
+        <border color="rgba(203, 213, 225, 1)" width="1"/>
+      </line>
+      <shape width="500" height="20" topLeftX="60" topLeftY="506" type="text" id="bex">
+        <content fontSize="9" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="left">
+          <p>invana 项目介绍 · 技术评审</p>
+        </content>
+      </shape>
+      <shape width="100" height="20" topLeftX="800" topLeftY="506" type="text" id="bet">
+        <content fontSize="9" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="right">
+          <p>09 / 10</p>
+        </content>
+      </shape>
+    </data>
+    <note id="bem">
+      <content/>
+    </note>
+  </slide>
+  <slide id="pYv">
+    <style>
+      <fill id="fYv">
+        <fillColor color="rgba(255, 255, 255, 1)"/>
+      </fill>
+    </style>
+    <data>
+      <shape width="600" height="18" topLeftX="60" topLeftY="40" type="text" id="buF">
+        <content fontSize="11" fontFamily="思源黑体" color="rgba(0, 112, 186, 1)" bold="true" lineSpacing="multiple:1" textAlign="left">
+          <p>05 · 现状与路线</p>
+        </content>
+      </shape>
+      <shape width="840" height="56" topLeftX="60" topLeftY="64" type="text" id="buA">
+        <content textType="headline" fontSize="24" fontFamily="思源黑体" color="rgba(0, 28, 84, 1)" bold="true" lineSpacing="multiple:1.15" textAlign="left">
+          <p>先以一处最小改动修复舍入，再扩展按客户分组导出</p>
+        </content>
+      </shape>
+      <line id="buf" startX="60" startY="128" endX="900.0005952378843" endY="128">
+        <border color="rgba(203, 213, 225, 1)" width="1"/>
+      </line>
+      <shape width="64" height="40" topLeftX="60" topLeftY="172" type="text" id="buV">
+        <content fontSize="26" fontFamily="思源黑体" color="rgba(0, 48, 135, 1)" bold="true" lineSpacing="multiple:1" textAlign="left">
+          <p>01</p>
+        </content>
+      </shape>
+      <shape width="200" height="24" topLeftX="140" topLeftY="174" type="text" id="buH">
+        <content fontSize="17" fontFamily="思源黑体" color="rgba(0, 28, 84, 1)" bold="true" lineSpacing="multiple:1.3" textAlign="left">
+          <p>修复（当前）</p>
+        </content>
+      </shape>
+      <shape width="540" height="40" topLeftX="360" topLeftY="176" type="text" id="buy">
+        <content fontSize="13" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.4" textAlign="left">
+          <p>round_money 由 ROUND_DOWN 改为 ROUND_HALF_UP，与 spec.md 对齐</p>
+        </content>
+      </shape>
+      <line id="buw" startX="140" startY="228" endX="900.000657894452" endY="228">
+        <border color="rgba(203, 213, 225, 1)" width="1"/>
+      </line>
+      <shape width="64" height="40" topLeftX="60" topLeftY="260" type="text" id="buU">
+        <content fontSize="26" fontFamily="思源黑体" color="rgba(0, 48, 135, 1)" bold="true" lineSpacing="multiple:1" textAlign="left">
+          <p>02</p>
+        </content>
+      </shape>
+      <shape width="200" height="24" topLeftX="140" topLeftY="262" type="text" id="buO">
+        <content fontSize="17" fontFamily="思源黑体" color="rgba(0, 28, 84, 1)" bold="true" lineSpacing="multiple:1.3" textAlign="left">
+          <p>验证</p>
+        </content>
+      </shape>
+      <shape width="540" height="40" topLeftX="360" topLeftY="264" type="text" id="bum">
+        <content fontSize="13" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.4" textAlign="left">
+          <p>python3 -m pytest tests/ -q 全绿；23 个用例全部通过，不改动测试</p>
+        </content>
+      </shape>
+      <line id="buz" startX="140" startY="316" endX="900.000657894452" endY="316">
+        <border color="rgba(203, 213, 225, 1)" width="1"/>
+      </line>
+      <shape width="64" height="40" topLeftX="60" topLeftY="348" type="text" id="buZ">
+        <content fontSize="26" fontFamily="思源黑体" color="rgba(0, 48, 135, 1)" bold="true" lineSpacing="multiple:1" textAlign="left">
+          <p>03</p>
+        </content>
+      </shape>
+      <shape width="200" height="24" topLeftX="140" topLeftY="350" type="text" id="bux">
+        <content fontSize="17" fontFamily="思源黑体" color="rgba(0, 28, 84, 1)" bold="true" lineSpacing="multiple:1.3" textAlign="left">
+          <p>扩展（选做）</p>
+        </content>
+      </shape>
+      <shape width="540" height="40" topLeftX="360" topLeftY="352" type="text" id="buE">
+        <content fontSize="13" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.4" textAlign="left">
+          <p>services/report 增加按客户分组导出 CSV 的能力</p>
+        </content>
+      </shape>
+      <line id="bui" startX="140" startY="404" endX="900.000657894452" endY="404">
+        <border color="rgba(203, 213, 225, 1)" width="1"/>
+      </line>
+      <shape width="840" height="44" topLeftX="60" topLeftY="430" presetHandlers="0" type="rect" id="buQ">
+        <fill>
+          <fillColor color="rgba(242, 246, 252, 1)"/>
+        </fill>
+        <content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)"/>
+      </shape>
+      <shape width="800" height="22" topLeftX="78" topLeftY="442" type="text" id="bus">
+        <content fontSize="13" fontFamily="Roboto Mono" color="rgba(0, 28, 84, 1)" bold="true" lineSpacing="multiple:1.3" textAlign="left">
+          <p>验收命令：python3 -m pytest tests/ -q 预期：23 passed</p>
+        </content>
+      </shape>
+      <line id="buT" startX="60" startY="498" endX="900.0005952378843" endY="498">
+        <border color="rgba(203, 213, 225, 1)" width="1"/>
+      </line>
+      <shape width="500" height="20" topLeftX="60" topLeftY="506" type="text" id="buq">
+        <content fontSize="9" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="left">
+          <p>invana 项目介绍 · 技术评审</p>
+        </content>
+      </shape>
+      <shape width="100" height="20" topLeftX="800" topLeftY="506" type="text" id="buD">
+        <content fontSize="9" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.3" textAlign="right">
+          <p>10 / 10</p>
+        </content>
+      </shape>
+    </data>
+    <note id="bun">
+      <content/>
+    </note>
+  </slide>
+</presentation>
